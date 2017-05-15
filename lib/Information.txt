@@ -1,0 +1,39 @@
+======================================
+Introduction to MPI
+David de la Torre / Aerospace Terrassa / UPC
+Spring 2017
+======================================
+
+This pack contains several functions to compute the position of planets and asteroids in the Solar System.
+
+---------------------------------------------------------
+
+The *.csv files contain the orbital elements of several asteroid families. The Astorb.txt file contains the orbital elements of 700000+ asteroids of the main asteroid belt. Two functions can be used to retrieve the keplerian elements of the asteroids. Example:
+
+- KEP = read_neo("PHA.csv",12,20): retrieves the keplerian elements of the 12th to the 20th asteroids in the database "PHA.csv".
+- KEP = read_astorb(12,20): retrieves the keplerian elements of the 12th to the 20th asteroids in the database "Astorb_*.txt".
+
+The previous functions retrieve a structure (KEP) with the keplerian elements at the time "epoch" in date J2000. Consult the header "ReadDB.h" for details about the KEP structure. Note that the Mean anomaly (M) should be propagated later on from the asteroid's given epoch to the desired current date (always in J2000 date units).
+
+Another function can be used to retrieve the keplerian elements of the major planets of the Solar System. Example:
+
+- GetPlanetKEP(&a,&e,&i,&w,&W,&M,3,jd2k): Retrieves the orbital elements (a,e,i,w,W,M) of the Earth (ID #3) at the J2000 date jd2k. Note that there will be no need to further propagate the Mean anomaly. Consult the function's source code for details about the planet IDs.
+
+---------------------------------------------------------
+
+Given a set of keplerian elements, the position [x,y,z] of a body in the Solar System can be computed with:
+
+- Propagate_KEP2ICF(r,a,e,i,w,W,M,dt,MU): returns an array (r[3] = {x,y,z} in km), given the orbital elements (a,e,i,w,W) expressed at a certain time (epoch). The mean anomaly (M) can be optionally propagated for a certain time "dt" (in seconds!) from the epoch. In the case of the planets, dt=0.
+
+Given the position of a body in the solar system, the azimuth and elevation angles can be computed with:
+
+- ICF2AER(&az,&el,r,jd2k,lon,lat): returns the azimuth (az) and elevation (el) angles of a body (of position r), at the date jd2k, from a given longitude and latitude (lon,lat). All in degrees.
+
+To compute the J2000 date (jd2k) of any calendar date (year/month/etc), use the function:
+
+- jd2k = Cal2JD2K(year,month,day,hour,minute,second): return the J2000 date of the given calendar date.
+
+---------------------------------------------------------
+
+Investigate all the other subroutines if you wish to. Any inquiries shall be addressed to: david.de.la.torre.sangra@upc.edu
+

@@ -1,0 +1,19 @@
+{
+  "name": "death_star",
+  "version": "1.0.0",
+  "description": "Project that computes (in parallel - MPI) the nearest approach of a PHO (Potentially hazardous object) to the Earth.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/naydenov1/death_star.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/naydenov1/death_star/issues"
+  },
+  "homepage": "https://github.com/naydenov1/death_star#readme"
+}

@@ -1,0 +1,673 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"n",
+				"num_primes"
+			],
+			[
+				"num",
+				"num_primes"
+			],
+			[
+				"NUM",
+				"number_of_primes"
+			],
+			[
+				"nu",
+				"number_of_primes"
+			],
+			[
+				"len",
+				"len_abundant"
+			],
+			[
+				"prev",
+				"previous_size"
+			],
+			[
+				"c",
+				"cycle"
+			],
+			[
+				"a",
+				"abundant"
+			],
+			[
+				"sum",
+				"sum_of_divisors"
+			],
+			[
+				"fac",
+				"factor"
+			],
+			[
+				"res",
+				"result_sum"
+			],
+			[
+				"resul",
+				"result_sum"
+			],
+			[
+				"uni",
+				"units"
+			],
+			[
+				"hu",
+				"hundreds_number"
+			],
+			[
+				"ten",
+				"tens_number"
+			],
+			[
+				"re",
+				"return"
+			],
+			[
+				"result",
+				"result_array"
+			],
+			[
+				"is",
+				"is_prime"
+			],
+			[
+				"tri",
+				"triangle_number"
+			],
+			[
+				"ine",
+				"index"
+			],
+			[
+				"ge",
+				"generate_triangle"
+			],
+			[
+				"ma",
+				"max_product"
+			],
+			[
+				"bac",
+				"background-color"
+			],
+			[
+				"over",
+				"overflow"
+			],
+			[
+				"na",
+				"nav-items"
+			],
+			[
+				"metada",
+				"metadata_set"
+			],
+			[
+				"metadata",
+				"metadata_get"
+			],
+			[
+				"addMeta",
+				"addMetadataModal"
+			],
+			[
+				"user",
+				"username"
+			],
+			[
+				"rights",
+				"rightsGroup"
+			],
+			[
+				"groupRight",
+				"groupRightsModal"
+			],
+			[
+				"client",
+				"clientAPI"
+			],
+			[
+				"ch",
+				"groupRightCheck"
+			],
+			[
+				"modal",
+				"modal_vm"
+			],
+			[
+				"coun",
+				"countries"
+			],
+			[
+				"fon",
+				"font-size"
+			],
+			[
+				"back",
+				"background-color"
+			],
+			[
+				"padd",
+				"padding"
+			],
+			[
+				"groupTo",
+				"groupToRemove"
+			],
+			[
+				"add",
+				"addGroup"
+			],
+			[
+				"con",
+				"confirm"
+			],
+			[
+				"get",
+				"getGroups"
+			],
+			[
+				"border",
+				"border-right"
+			],
+			[
+				"fu",
+				"function"
+			],
+			[
+				"gro",
+				"groupList"
+			],
+			[
+				"org",
+				"organisation"
+			],
+			[
+				"dele",
+				"deleteNodes"
+			],
+			[
+				"ad",
+				"adminList"
+			],
+			[
+				"syst",
+				"systemForm"
+			],
+			[
+				"missio",
+				"missionForm"
+			],
+			[
+				"cons",
+				"console"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "main.c",
+			"settings":
+			{
+				"buffer_size": 1454,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+		[
+			[
+				[
+					"Packages/LaTeXTools/LaTeX.sublime-build",
+					""
+				],
+				[
+					"Packages/LaTeXTools/LaTeX.sublime-build",
+					"Traditional"
+				],
+				[
+					"Packages/LaTeXTools/LaTeX.sublime-build",
+					"PdfLaTeX"
+				],
+				[
+					"Packages/LaTeXTools/LaTeX.sublime-build",
+					"XeLaTeX"
+				],
+				[
+					"Packages/LaTeXTools/LaTeX.sublime-build",
+					"LuaLaTeX"
+				],
+				[
+					"Packages/LaTeXTools/LaTeX.sublime-build",
+					"Basic Builder"
+				],
+				[
+					"Packages/LaTeXTools/LaTeX.sublime-build",
+					"Basic Builder - PdfLaTeX"
+				],
+				[
+					"Packages/LaTeXTools/LaTeX.sublime-build",
+					"Basic Builder - XeLaTeX"
+				],
+				[
+					"Packages/LaTeXTools/LaTeX.sublime-build",
+					"Basic Builder - LuaLaTeX"
+				],
+				[
+					"Packages/LaTeXTools/LaTeX.sublime-build",
+					"Script Builder"
+				]
+			],
+			[
+				"Packages/LaTeXTools/LaTeX.sublime-build",
+				"Traditional"
+			]
+		]
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 400.0,
+		"last_filter": "instl",
+		"selected_items":
+		[
+			[
+				"instl",
+				"Package Control: Install Package"
+			],
+			[
+				"View ",
+				"LaTeXTools: View TeX package documentation"
+			],
+			[
+				"add",
+				"Package Control: Add Repository"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"Latex",
+				"LaTeXTools: Check system"
+			],
+			[
+				"instll",
+				"Package Control: Install Package"
+			],
+			[
+				"menu",
+				"View: Toggle Menu"
+			],
+			[
+				"packa",
+				"Install Package Control"
+			]
+		],
+		"width": 493.0
+	},
+	"console":
+	{
+		"height": 129.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/home/bobz/repos/death_star"
+	],
+	"file_history":
+	[
+		"/home/bobz/repos/death_star/main.c",
+		"/home/bobz/Desktop/StartCam",
+		"/home/bobz/uni/optatives/mat_inf/codes/prob23.py",
+		"/home/bobz/Downloads/17052017_1329 (2).log",
+		"/home/bobz/Desktop/USRP_about",
+		"/home/bobz/uni/optatives/mat_inf/codes/prob27.py",
+		"/home/bobz/uni/optatives/mat_inf/codes/prob26.py",
+		"/home/bobz/Desktop/ISS-passes.txt",
+		"/home/bobz/Downloads/17052017_1329 (1).log",
+		"/home/bobz/Downloads/17052017_1329.log",
+		"/home/bobz/Desktop/2017-05-17T05:55:45+00:00.bin",
+		"/home/bobz/repos/tfg/1.Report/packages.tex",
+		"/home/bobz/Desktop/TGS_technical_report/TGS Technical Report (version2).tex",
+		"/home/bobz/Desktop/TGS_technical_report/config.sty",
+		"/home/bobz/uni/optatives/mat_inf/codes/test_split_matrix.py",
+		"/home/bobz/uni/optatives/mat_inf/codes/split_matrix.py",
+		"/home/bobz/uni/optatives/mat_inf/codes/prob25.py",
+		"/home/bobz/uni/optatives/mat_inf/codes/prob24.py",
+		"/home/bobz/uni/optatives/mat_inf/codes/prob22.py",
+		"/home/bobz/uni/optatives/mat_inf/codes/prob21.py",
+		"/home/bobz/uni/optatives/mat_inf/codes/prob20.py",
+		"/home/bobz/uni/optatives/mat_inf/codes/Divisors.py",
+		"/home/bobz/uni/optatives/mat_inf/codes/prob13.py",
+		"/home/bobz/uni/optatives/mat_inf/codes/prob18.py",
+		"/home/bobz/uni/optatives/mat_inf/codes/prob19.py",
+		"/home/bobz/uni/optatives/mat_inf/codes/prob17.py",
+		"/home/bobz/uni/optatives/mat_inf/codes/image_compression/mcecompress.c",
+		"/home/bobz/uni/optatives/mat_inf/codes/image_compression/get_threshold.c",
+		"/home/bobz/Desktop/iss-2017-05-13T01:28:00+00:00.bin",
+		"/home/bobz/repos/gr-tutorial/examples/gr-tutorial/lib/my2_qpsk_demod_cb_impl.h",
+		"/home/bobz/repos/gr-tutorial/examples/gr-tutorial/grc/tutorial_my2_qpsk_demod_cb.xml",
+		"/home/bobz/uni/optatives/mat_inf/codes/prob15.py",
+		"/home/bobz/repos/gr-tutorial/examples/gr-tutorial/lib/my2_qpsk_demod_cb_impl.cc",
+		"/home/bobz/repos/gr-tutorial/examples/gr-tutorial/python/qpsk_demod_py_cb.py",
+		"/home/bobz/repos/gr-tutorial/examples/gr-tutorial/python/qa_my2_qpsk_demod_cb.py",
+		"/media/bobz/TOSHIBA EXT/STUDIES/UPC/3B/Gas dynamics/Problema de Gasos Compressible/RTV3/graficas.m",
+		"/home/bobz/.cache/.fr-PcYhFF/v1.m",
+		"/home/bobz/uni/optatives/mat_inf/codes/prob14.py",
+		"/home/bobz/uni/optatives/mat_inf/codes/prob10.py",
+		"/home/bobz/uni/optatives/mat_inf/codes/prob12.py",
+		"/home/bobz/uni/optatives/mat_inf/codes/prob11.py",
+		"/home/bobz/uni/optatives/mat_inf/codes/prob9.py",
+		"/home/bobz/Desktop/SLACK_URL",
+		"/home/bobz/Desktop/StartDB",
+		"/home/bobz/uni/optatives/mat_inf/codes/prob8.py",
+		"/home/bobz/uni/optatives/mat_inf/codes/prob7.py",
+		"/home/bobz/uni/optatives/high-perf-computing/mpi01.c",
+		"/home/bobz/Desktop/test.c",
+		"/home/bobz/repos/opencosmos/qbapp-fe/index.js",
+		"/home/bobz/repos/opencosmos/qbapp-fe/google-code-prettify/prettify.js",
+		"/home/bobz/repos/opencosmos/qbapp-fe/index.jade",
+		"/home/bobz/repos/opencosmos/qbapp-fe/qbkitPrograms-template.jade",
+		"/home/bobz/repos/opencosmos/qbapp-fe/qbkitPrograms-directive.js",
+		"/home/bobz/repos/opencosmos/qbapp-fe/qbKit.jade",
+		"/home/bobz/repos/opencosmos/qbapp-fe/unrelated_code/qbapp-fe.sublime-project",
+		"/home/bobz/Downloads/planningTable.tex",
+		"/home/bobz/repos/opencosmos/qbapp-fe/qbKit.less",
+		"/home/bobz/repos/opencosmos/qbapp-fe/qbkitProgramContent-directive.js",
+		"/home/bobz/repos/opencosmos/qbapp-fe/index.less",
+		"/home/bobz/repos/opencosmos/qbapp-fe/qbKit-service.js",
+		"/home/bobz/repos/opencosmos/qbapp-fe/qbkitScope-template.jade",
+		"/home/bobz/repos/opencosmos/qbapp-fe/qbKit-controller.js",
+		"/home/bobz/repos/opencosmos/qbapp-fe/qbkitScope-directive.js",
+		"/home/bobz/repos/opencosmos/qbapp-fe/api-service.js",
+		"/home/bobz/repos/opencosmos/qbapp-fe/groupRightsModal-template.jade",
+		"/home/bobz/repos/opencosmos/qbapp-fe/admin-controller.js",
+		"/home/bobz/repos/opencosmos/qbapp-fe/summary-controller.js",
+		"/home/bobz/repos/opencosmos/qbapp-fe/development.jade",
+		"/home/bobz/repos/opencosmos/qbapp-fe/admin.jade",
+		"/home/bobz/repos/opencosmos/qbapp-fe/metadataModal-template.jade",
+		"/home/bobz/repos/opencosmos/qbapp-fe/session-service.js",
+		"/home/bobz/repos/opencosmos/qbapp-fe/userInfo-template.jade",
+		"/home/bobz/repos/opencosmos/qbapp-fe/simulator-service.js",
+		"/home/bobz/repos/opencosmos/qbapp-fe/summary.jade",
+		"/home/bobz/repos/opencosmos/qbapp-fe/backend-config.js",
+		"/home/bobz/repos/opencosmos/qbapp-fe/groupRights_modal.jade",
+		"/home/bobz/repos/opencosmos/qbapp-fe/login.jade",
+		"/home/bobz/repos/opencosmos/qbapp-fe/parametricDesign-controller.js",
+		"/home/bobz/repos/opencosmos/qbapp-fe/Makefile",
+		"/home/bobz/repos/opencosmos/qbapp-fe/config.js",
+		"/home/bobz/repos/opencosmos/qbapp-fe/login-controller.js",
+		"/home/bobz/repos/opencosmos/qbapp-fe/header.jade",
+		"/home/bobz/repos/opencosmos/qbapp-fe/backEnd-mocks.js",
+		"/home/bobz/repos/opencosmos/qbapp-fe/development.less",
+		"/home/bobz/repos/opencosmos/qbapp-fe/consoleLog-directive.js",
+		"/home/bobz/repos/opencosmos/qbapp-fe/test11.js",
+		"/home/bobz/repos/opencosmos/qbapp-fe/test11.less",
+		"/home/bobz/.ssh/known_hosts",
+		"/home/bobz/repos/opencosmos/qbapp-fe/parametricDesign.jade",
+		"/home/bobz/repos/opencosmos/qbapp-fe/test1.js",
+		"/home/bobz/repos/opencosmos/qbapp-fe/admin.less",
+		"/home/bobz/repos/opencosmos/qbapp-fe/client.js",
+		"/etc/postgresql/9.6/main/pg_hba.conf",
+		"/home/bobz/repos/opencosmos/qbapp-model/.git/config",
+		"/home/bobz/repos/opencosmos/qbapp-model/package.json",
+		"/home/bobz/repos/opencosmos/qbapp-model/data/Makefile",
+		"/home/bobz/repos/opencosmos/qbapp-fe/deleteConfirmModal-template.jade",
+		"/home/bobz/repos/opencosmos/qbapp-fe/clickPopUp-component.js",
+		"/home/bobz/repos/opencosmos/qbapp-fe/header-controller.js",
+		"/home/bobz/repos/opencosmos/qbapp-fe/header.less",
+		"/home/bobz/repos/tfg/sublime/tfg.sublime-project",
+		"/home/bobz/repos/tfg/main.tex",
+		"/home/bobz/repos/tfg/packages.tex",
+		"/home/bobz/Desktop/MIT_Thesis/README.main",
+		"/home/bobz/repos/tfg/.gitignore",
+		"/home/bobz/repos/tfg/sublime/main.tex",
+		"/home/bobz/.config/sublime-text-3/Packages/LaTeXTools/LaTeXTools.sublime-settings",
+		"/home/bobz/repos/opencosmos/scripts/qberr",
+		"/home/bobz/repos/opencosmos/qbapp-fe/routes-config.js",
+		"/home/bobz/repos/opencosmos/qbapp-fe/api-client.js",
+		"/home/bobz/repos/opencosmos/qbapp-fe/out/bundle.js",
+		"/home/bobz/repos/opencosmos/qbapp-fe/node_modules/angular/angular.js",
+		"/home/bobz/repos/opencosmos/qbapp-fe/dataRep.js",
+		"/home/bobz/repos/opencosmos/qbapp-fe/dataRep.jade",
+		"/home/bobz/repos/opencosmos/qbapp-model/apidemo/index.html",
+		"/home/bobz/repos/opencosmos/qbapp-fe/summary.less",
+		"/home/bobz/repos/opencosmos/qbapp-fe/login.less",
+		"/home/bobz/repos/opencosmos/qbapp-fe/build/gulpfile.js",
+		"/home/bobz/repos/opencosmos/qbapp-fe/checkDate-directive.js"
+	],
+	"find":
+	{
+		"height": 22.0
+	},
+	"find_in_files":
+	{
+		"height": 104.0,
+		"where_history":
+		[
+			"<current file>",
+			"",
+			"<open folders>",
+			"<current file>",
+			"<open folders>"
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"range",
+			"geomet",
+			"sum",
+			"remainder",
+			"print",
+			"string",
+			"pre",
+			"i.",
+			"node",
+			"Login failed",
+			"groups_",
+			"groups_has",
+			"oups",
+			"install",
+			"assign",
+			"assigne",
+			"asign",
+			"userData",
+			"user_create",
+			"countries",
+			"infoUser",
+			"user",
+			"confirmationModal",
+			")",
+			"(",
+			"preview",
+			"qbapp",
+			"connect",
+			".groups",
+			"groups",
+			"node",
+			"add user",
+			"user to ",
+			"user_",
+			"right",
+			"group_remove",
+			"modal",
+			"error",
+			"column",
+			"hover",
+			"selectable",
+			"italic"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"xrange",
+			"sum_of",
+			"reminder",
+			"triangle",
+			"groups",
+			"moreInfo",
+			"deleteConfirmModal",
+			"}",
+			"{"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "main.c",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1454,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 22.0
+	},
+	"input":
+	{
+		"height": 35.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.latextools":
+	{
+		"height": 98.0
+	},
+	"pinned_build_system": "",
+	"project": "death_star.sublime-project",
+	"replace":
+	{
+		"height": 40.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"",
+				"~/uni/optatives/mat_inf/mce.sublime-project"
+			]
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 241.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

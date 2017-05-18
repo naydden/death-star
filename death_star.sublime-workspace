@@ -4,6 +4,34 @@
 		"selected_items":
 		[
 			[
+				"dia",
+				"diameter"
+			],
+			[
+				"zone",
+				"zone_status"
+			],
+			[
+				"diam",
+				"diameter_satuts"
+			],
+			[
+				"tle",
+				"tle_satus"
+			],
+			[
+				"se",
+				"security_ratio"
+			],
+			[
+				"zon",
+				"zone_status"
+			],
+			[
+				"dim",
+				"diameter_satuts"
+			],
+			[
 				"n",
 				"num_primes"
 			],
@@ -215,7 +243,25 @@
 			"file": "main.c",
 			"settings":
 			{
-				"buffer_size": 1454,
+				"buffer_size": 2163,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "ISS.txt",
+			"settings":
+			{
+				"buffer_size": 151,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/home/bobz/repos/sat-alert/sat-alarm.c",
+			"settings":
+			{
+				"buffer_size": 10817,
+				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
 		}
@@ -336,6 +382,7 @@
 	],
 	"file_history":
 	[
+		"/home/bobz/repos/death_star/ISS.txt",
 		"/home/bobz/repos/death_star/main.c",
 		"/home/bobz/Desktop/StartCam",
 		"/home/bobz/uni/optatives/mat_inf/codes/prob23.py",
@@ -458,7 +505,7 @@
 	],
 	"find":
 	{
-		"height": 22.0
+		"height": 38.0
 	},
 	"find_in_files":
 	{
@@ -477,6 +524,8 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"optarg",
+			"int",
 			"range",
 			"geomet",
 			"sum",
@@ -554,15 +603,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1454,
+						"buffer_size": 2163,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								647,
+								647
 							]
 						],
 						"settings":
@@ -575,6 +624,63 @@
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "ISS.txt",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 151,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								82,
+								82
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "/home/bobz/repos/sat-alert/sat-alarm.c",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 10817,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1884,
+								1884
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
 					"type": "text"
 				}
 			]
@@ -664,8 +770,8 @@
 	"show_minimap": true,
 	"show_open_files": false,
 	"show_tabs": true,
-	"side_bar_visible": true,
-	"side_bar_width": 241.0,
+	"side_bar_visible": false,
+	"side_bar_width": 197.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{

@@ -240,28 +240,18 @@
 	"buffers":
 	[
 		{
-			"file": "main.c",
+			"file": "/home/bobz/Desktop/StartCam",
 			"settings":
 			{
-				"buffer_size": 2163,
+				"buffer_size": 194,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "ISS.txt",
 			"settings":
 			{
-				"buffer_size": 151,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "/home/bobz/repos/sat-alert/sat-alarm.c",
-			"settings":
-			{
-				"buffer_size": 10817,
-				"encoding": "UTF-8",
+				"buffer_size": 0,
 				"line_ending": "Unix"
 			}
 		}
@@ -322,9 +312,13 @@
 	"command_palette":
 	{
 		"height": 400.0,
-		"last_filter": "instl",
+		"last_filter": "pret",
 		"selected_items":
 		[
+			[
+				"pret",
+				"Pretty JSON: Format and Sort JSON"
+			],
 			[
 				"instl",
 				"Package Control: Install Package"
@@ -378,19 +372,35 @@
 	},
 	"expanded_folders":
 	[
-		"/home/bobz/repos/death_star"
+		"/home/bobz/repos/death_star",
+		"/home/bobz/repos/death_star/sgp-c-lib-20061025"
 	],
 	"file_history":
 	[
-		"/home/bobz/repos/death_star/ISS.txt",
-		"/home/bobz/repos/death_star/main.c",
+		"/home/bobz/Desktop/top_block.py",
+		"/home/bobz/Desktop/test.py",
+		"/home/bobz/Desktop/demodulated",
+		"/home/bobz/Desktop/ISS-passes.txt",
+		"/home/bobz/Desktop/test.grc",
+		"/home/bobz/Desktop/demod_demo.grc",
 		"/home/bobz/Desktop/StartCam",
+		"/home/bobz/repos/death_star/main.c",
+		"/home/bobz/.config/sublime-text-3/Packages/User/Pretty JSON.sublime-settings",
+		"/home/bobz/.config/sublime-text-3/Packages/Pretty JSON/Pretty JSON.sublime-settings",
+		"/home/bobz/repos/death_star/parserCSV.js",
+		"/home/bobz/Downloads/a.csv",
+		"/home/bobz/uni/optatives/high-perf-computing/Asteroids_MPI/ReadDB.c",
+		"/home/bobz/repos/death_star/ISS.txt",
+		"/home/bobz/repos/sat-alert/sat-alarm.c",
+		"/home/bobz/Desktop/SGP4/cpp/testcpp.cpp",
+		"/home/bobz/.cache/.fr-22rZuU/DOCUMENTATION",
+		"/home/bobz/.cache/.fr-IXicrz/COPYING",
+		"/home/bobz/.cache/.fr-wa4XPx/README",
 		"/home/bobz/uni/optatives/mat_inf/codes/prob23.py",
 		"/home/bobz/Downloads/17052017_1329 (2).log",
 		"/home/bobz/Desktop/USRP_about",
 		"/home/bobz/uni/optatives/mat_inf/codes/prob27.py",
 		"/home/bobz/uni/optatives/mat_inf/codes/prob26.py",
-		"/home/bobz/Desktop/ISS-passes.txt",
 		"/home/bobz/Downloads/17052017_1329 (1).log",
 		"/home/bobz/Downloads/17052017_1329.log",
 		"/home/bobz/Desktop/2017-05-17T05:55:45+00:00.bin",
@@ -494,14 +504,7 @@
 		"/home/bobz/repos/opencosmos/qbapp-fe/routes-config.js",
 		"/home/bobz/repos/opencosmos/qbapp-fe/api-client.js",
 		"/home/bobz/repos/opencosmos/qbapp-fe/out/bundle.js",
-		"/home/bobz/repos/opencosmos/qbapp-fe/node_modules/angular/angular.js",
-		"/home/bobz/repos/opencosmos/qbapp-fe/dataRep.js",
-		"/home/bobz/repos/opencosmos/qbapp-fe/dataRep.jade",
-		"/home/bobz/repos/opencosmos/qbapp-model/apidemo/index.html",
-		"/home/bobz/repos/opencosmos/qbapp-fe/summary.less",
-		"/home/bobz/repos/opencosmos/qbapp-fe/login.less",
-		"/home/bobz/repos/opencosmos/qbapp-fe/build/gulpfile.js",
-		"/home/bobz/repos/opencosmos/qbapp-fe/checkDate-directive.js"
+		"/home/bobz/repos/opencosmos/qbapp-fe/node_modules/angular/angular.js"
 	],
 	"find":
 	{
@@ -524,6 +527,9 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"firdes",
+			"fid",
+			"st",
 			"optarg",
 			"int",
 			"range",
@@ -594,53 +600,24 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 1,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "main.c",
+					"file": "/home/bobz/Desktop/StartCam",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2163,
+						"buffer_size": 194,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								647,
-								647
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/C++/C.sublime-syntax",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "ISS.txt",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 151,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								82,
-								82
+								194,
+								194
 							]
 						],
 						"settings":
@@ -655,32 +632,30 @@
 					"type": "text"
 				},
 				{
-					"buffer": 2,
-					"file": "/home/bobz/repos/sat-alert/sat-alarm.c",
+					"buffer": 1,
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 10817,
+						"buffer_size": 0,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1884,
-								1884
+								0,
+								0
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/C++/C.sublime-syntax",
-							"translate_tabs_to_spaces": false
+							"syntax": "Packages/Text/Plain text.tmLanguage"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 0,
 					"type": "text"
 				}
 			]

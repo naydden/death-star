@@ -22,7 +22,7 @@ KEP *read_neo ( const char *fname, int i0, int i1 )
   FILE *fid = fopen(fname,"r"); assert(fid != NULL);
 
   // Skip the first i0 lines (plus header)
-  for (int k=0; k<=i0; k++) fscanf(fid,"%*[^\n]\n");
+  for (int k=0; k<i0; k++) fscanf(fid,"%*[^\n]\n");
 
   // Read i0-to-i1 formatted lines
   for (int i=0, st=0; i<(i1-i0) && st!=EOF; i++)
@@ -51,14 +51,14 @@ KEP *read_neo ( const char *fname, int i0, int i1 )
 KEP *read_astorb ( int i0, int i1 )
 {
   // Allocate struct
-  KEP *ast = (KEP*) malloc((i0 - i1) * sizeof(KEP)); assert(ast != NULL);
+  KEP *ast = (KEP*) malloc((i1 - i0) * sizeof(KEP)); assert(ast != NULL);
 
   // Open files
   FILE *fidN = fopen("astorb_names.txt","r"); assert(fidN != NULL);
   FILE *fidK  = fopen("astorb_kep.txt","r"); assert(fidK != NULL);
 
   // Skip the first i0 lines (plus header)
-  for (int k=0; k<=i0; k++)
+  for (int k=0; k<i0; k++)
   {
     fscanf(fidN,"%*[^\n]\n");
     fscanf(fidK,"%*[^\n]\n");
@@ -92,14 +92,14 @@ KEP *read_astorb ( int i0, int i1 )
 KEP *read_satellite ( int i0, int i1 )
 {
   // Allocate struct
-  KEP *ast = (KEP*) malloc((i0 - i1) * sizeof(KEP)); assert(ast != NULL);
+  KEP *ast = (KEP*) malloc((i1 - i0) * sizeof(KEP)); assert(ast != NULL);
 
   // Open files
 
   FILE *fidK  = fopen("database.csv","r"); assert(fidK != NULL);
 
   // Skip the first i0 lines (plus header)
-  for (int k=0; k<=i0; k++)
+  for (int k=0; k<i0; k++)
   {
     fscanf(fidK,"%*[^\n]\n");
   }

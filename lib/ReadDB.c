@@ -96,7 +96,7 @@ KEP *read_satellite ( int i0, int i1 )
 
   // Open files
 
-  FILE *fidK  = fopen("objects_in_orbit.csv","r"); assert(fidK != NULL);
+  FILE *fidK  = fopen("database.csv","r"); assert(fidK != NULL);
 
   // Skip the first i0 lines (plus header)
   for (int k=0; k<=i0; k++)

@@ -46,7 +46,7 @@ int main(int argc, char **argv){
 
 	KEP *object;
 	object=read_sat(a1-1, a2);
-	printf("Asteroid: %d Name: %s \n", a1, object[0].name);
+	printf("Asteroid: %d Name: %s SMA: %f \n", a1+2, object[2].name, object[2].sma);
 
 	MPI_Finalize();
 

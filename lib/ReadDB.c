@@ -95,7 +95,7 @@ KEP *read_sat ( int i0, int i1 )
   KEP *ast = (KEP*) malloc((i1 - i0) * sizeof(KEP)); assert(ast != NULL);
 
   // Open files
-  FILE *fid = fopen("testDB.csv","r"); assert(fid != NULL);
+  FILE *fid = fopen("database.csv","r"); assert(fid != NULL);
 
   // Skip the first i0 lines (plus header)
   for (int k=0; k<i0; k++) fscanf(fid,"%*[^\n]\n");
@@ -104,9 +104,8 @@ KEP *read_sat ( int i0, int i1 )
   for (int i=0, st=0; i<(i1-i0) && st!=EOF; i++)
   {
     // Read RAW data
-    st = fscanf(fid,"%[^,],%lf,%lf,%lf,%lf,%lf,%lf,%lf,%*[^\n]\n",
-      ast[i].name, &ast[i].sma, &ast[i].ecc,
-      &ast[i].inc, &ast[i].argp, &ast[i].raan, &ast[i].M, &ast[i].epoch);
+    st = fscanf(fid,"%s %lf %lf %lf %lf %lf %lf %lf ",
+      ast[i].name, &ast[i].sma, &ast[i].ecc,&ast[i].inc, &ast[i].argp, &ast[i].raan, &ast[i].M, &ast[i].epoch); //%*[^\n]\n
     
     // Adjust units
     ast[i].sma = ast[i].sma * 1000;

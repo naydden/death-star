@@ -2,8 +2,8 @@
 #include <stdlib.h>
 #include <assert.h>
 #include <math.h>
-#include "Astrodynamics.h"
-#include "ReadDB.h"
+#include "./lib/ReadDB.h"
+#include "./lib/Astrodynamics.h"
 #include "mpi.h"
 
 void checkr(int r,char *txt) { 

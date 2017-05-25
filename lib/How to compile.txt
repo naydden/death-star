@@ -1,2 +1,0 @@
-How to compile:
-mpicc Astrodynamics.c ReadDB.c code.c -o nameofthecode -lm

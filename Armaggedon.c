@@ -33,7 +33,6 @@ int main(int argc, char **argv){
 	r=MPI_Init(&argc,&argv); checkr(r,"init");
 
 	int N;
-	int Np;
 	int a1;
 	int a2;
 
@@ -42,14 +41,12 @@ int main(int argc, char **argv){
 
 	a1=quisoc()*N/quants()+1;
 	a2=(quisoc()+1)*N/quants();
-	Np=a2-a1+1;
 
 	KEP *object;
 	object=read_sat(a1-1, a2);
 
 	double collision=0;
 	double CollisionTime=1000;
-	int t=0;
 
 	int TimeInit=0;
 	int TimeEnd=15;

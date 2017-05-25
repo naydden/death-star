@@ -4,7 +4,7 @@
 #include <getopt.h>
 
 #include "sgp_lib/sgdp4h.h"
-
+#include "lib/ReadDB.h"
 //  returns x,y,z vector for a given time.
 void xyz_position(double jd, xyz_t *pos) {
 	// satpos_xyz propagates the orbital elements given in init_sgpd4 and converts to xyz
@@ -114,6 +114,10 @@ int main(int argc, char **argv)
 
 	FILE *tle_sat;
 	tle_sat = fopen(tle,"rb");
+	int n = sizeof(tle_sat)/sizeof(tle_sat[0]);
+
+	KEP *deb_object;
+	deb_object = read_sat(0, 30);
 
 	if (!tle_sat) {
 		fprintf(stderr, "Error while reading satellite TLE.'\n");
@@ -147,7 +151,39 @@ int main(int argc, char **argv)
 			xyz_position(jd, &sat_pos)
 
 			/*********** DEBRIS **************************************/
-			for all the debris
+			for(int deb=0; deb <= n; deb++) {
+
+				orbit_t *orb_deb;
+
+				orb_deb->ep_year = (int)deb_object[deb].epoch/365+100;
+				orb_deb->ep_day = 1.0;
+				orb_deb->rev =
+				orb_deb->bstar =
+				orb_deb->eqinc = deb_object[deb].icc;
+				orb_deb->ecc = deb_object[deb].ecc;
+				orb_deb->mnan = deb_object[deb].M;
+				orb_deb->argp = deb_object[deb].argp;
+				orb_deb->ascn = deb_object[deb].raan;
+				orb_deb->smjaxs = deb_object[deb].sma;
+				orb_deb->norb =
+				orb_deb->satno =
+
+
+	int		ep_year;/* Year of epoch, e.g. 94 for 1994, 100 for 2000AD */
+	double	ep_day;	/* Day of epoch from 00:00 Jan 1st ( = 1.0 ) */
+	double	rev;	/* Mean motion, revolutions per day */
+	double	bstar;	/* Drag term .*/
+	double	eqinc;	/* Equatorial inclination, radians */
+	double	ecc;	/* Eccentricity */
+	double	mnan;	/* Mean anomaly at epoch from elements, radians */
+	double	argp;	/* Argument of perigee, radians */
+	double	ascn;	/* Right ascension (ascending node), radians */
+	double	smjaxs;	/* Semi-major axis, km */
+	long	norb;	/* Orbit number, for elements */
+	int		satno;	/* Satellite number. */
+
+} orbit_t;
+
 				imode = init_sgdp4(&orb_deb);
 				check_sgdp4(&imode);
 				//  stops program if data is not valid for SGDP
@@ -160,6 +196,7 @@ int main(int argc, char **argv)
 					exit(0);
 				}
 
+			}
 		}
 	}
 

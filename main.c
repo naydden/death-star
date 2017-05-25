@@ -2,31 +2,32 @@
 #include <stdlib.h>
 #include <string.h>
 #include <getopt.h>
+#include <math.h>
 
 #include "sgp_lib/sgdp4h.h"
 #include "lib/ReadDB.h"
 //  returns x,y,z vector for a given time.
 void xyz_position(double jd, xyz_t *pos) {
 	// satpos_xyz propagates the orbital elements given in init_sgpd4 and converts to xyz
-	if(satpos_xyz(jd, &pos) == SGDP4_ERROR) break;
+	if(satpos_xyz(jd, &pos, NULL) == SGDP4_ERROR) return;
 
-	printf("%12.4f   %16.8f %16.8f %16.8f %16.12f %16.12f %16.12f\n",
-		tsince,
-		pos.x, pos.y, pos.z,
-		vel.x, vel.y, vel.z);
+	// printf("%12.4f   %16.8f %16.8f %16.8f %16.12f %16.12f %16.12f\n",
+	// 	tsince,
+	// 	pos.x, pos.y, pos.z,
+	// 	vel.x, vel.y, vel.z);
 }
 
 //  returns 1 if there is a crash and 0 if there is not
 //  has to return timestamp and object
-int is_crash(xyz_t *sat_pos, xyz_t *deb_pos) {
+int is_crash(xyz_t *sat_pos, xyz_t *deb_pos, int d) {
 
-	if ( sqrt((sat_pos.x - deb_pos.x)*(sat_pos.x - deb_pos.x) + (sat_pos.y - deb_pos.y)*(sat_pos.y - deb_pos.y) + (sat_pos.z - deb_pos.z)*(sat_pos.z - deb_pos.z)) <= d) {
+	if ( sqrt((sat_pos->x - deb_pos->x)*(sat_pos->x - deb_pos->x) + (sat_pos->y - deb_pos->y)*(sat_pos->y - deb_pos->y) + (sat_pos->z - deb_pos->z)*(sat_pos->z - deb_pos->z)) <= d) {
 		return 1;
 	}
 }
 
 
-void check_sgdp4(int *imode) {
+void check_sgdp4(int imode) {
 	switch(imode)
 	{
 	case SGDP4_ERROR     :  printf("# SGDP error\n"); break;
@@ -123,7 +124,8 @@ int main(int argc, char **argv)
 		fprintf(stderr, "Error while reading satellite TLE.'\n");
 		return 1;
 	}
-
+	int d = diameter - '0';
+	int s = security_ratio - '0';
 	// read_twoline returns orbital elements out of a TLE
 	if (read_twoline(tle_sat, 0, &orb) == 0) {
 		print_orb(&orb);
@@ -148,7 +150,7 @@ int main(int argc, char **argv)
 			check_sgdp4(&imode);
 			//  stops program if data is not valid for SGDP
 			if(imode == SGDP4_ERROR) exit(1);
-			xyz_position(jd, &sat_pos)
+			xyz_position(jd, &sat_pos);
 
 			/*********** DEBRIS **************************************/
 			for(int deb=0; deb <= n; deb++) {
@@ -157,41 +159,25 @@ int main(int argc, char **argv)
 
 				orb_deb->ep_year = (int)deb_object[deb].epoch/365+100;
 				orb_deb->ep_day = 1.0;
-				orb_deb->rev =
-				orb_deb->bstar =
-				orb_deb->eqinc = deb_object[deb].icc;
+				orb_deb->rev = 1/(86400*(2*M_PI*sqrt(deb_object[deb].sma*deb_object[deb].sma*deb_object[deb].sma/MU)));
+				orb_deb->bstar = 1.0608e-05;
+				orb_deb->eqinc = deb_object[deb].inc;
 				orb_deb->ecc = deb_object[deb].ecc;
 				orb_deb->mnan = deb_object[deb].M;
 				orb_deb->argp = deb_object[deb].argp;
 				orb_deb->ascn = deb_object[deb].raan;
 				orb_deb->smjaxs = deb_object[deb].sma;
-				orb_deb->norb =
-				orb_deb->satno =
-
-
-	int		ep_year;/* Year of epoch, e.g. 94 for 1994, 100 for 2000AD */
-	double	ep_day;	/* Day of epoch from 00:00 Jan 1st ( = 1.0 ) */
-	double	rev;	/* Mean motion, revolutions per day */
-	double	bstar;	/* Drag term .*/
-	double	eqinc;	/* Equatorial inclination, radians */
-	double	ecc;	/* Eccentricity */
-	double	mnan;	/* Mean anomaly at epoch from elements, radians */
-	double	argp;	/* Argument of perigee, radians */
-	double	ascn;	/* Right ascension (ascending node), radians */
-	double	smjaxs;	/* Semi-major axis, km */
-	long	norb;	/* Orbit number, for elements */
-	int		satno;	/* Satellite number. */
-
-} orbit_t;
+				orb_deb->norb = orb_deb->rev*(int)deb_object[deb].epoch;
+				orb_deb->satno = 2;
 
 				imode = init_sgdp4(&orb_deb);
 				check_sgdp4(&imode);
 				//  stops program if data is not valid for SGDP
 				if(imode == SGDP4_ERROR) exit(1);
-				xyz_position(jd, &deb_pos)
+				xyz_position(jd, &deb_pos);
 
-				if (is_crash(&sat_pos,&deb_pos) == 1) {
-					printf("Crashed with %s", deb->name);
+				if (is_crash(&sat_pos,&deb_pos, d*s) == 1) {
+					printf("Crashed with %s", deb_object[deb].name);
 					printf("Crashed time %lf", jd);
 					exit(0);
 				}

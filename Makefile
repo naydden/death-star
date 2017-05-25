@@ -13,7 +13,7 @@ AR=ar cr
 RANLIB=ranlib
 DEPFLAGS=-I/usr/include
 
-SRCS=sgp_lib/aries.c sgp_lib/deep.c sgp_lib/ferror.c sgp_lib/satutl.c sgp_lib/sgdp4.c main.c
+SRCS=sgp_lib/aries.c sgp_lib/deep.c sgp_lib/ferror.c sgp_lib/satutl.c sgp_lib/sgdp4.c lib/ReadDB.c main.c
 
 OBJS=${SRCS:.c=.o}
 LIB=-lm $(XLIBS)
@@ -21,7 +21,7 @@ LIB=-lm $(XLIBS)
 all: main compvec
 
 main: $(OBJS)
-	$(CC) $(CFLAGS) $(DEPFLAGS) -o $@ $(OBJS) $(LIB)
+	$(CC) $(CFLAGS) $(DEPFLAGS) -o $@ $(OBJS) $(LIB) -lm
 
 compvec: sgp_lib/comp.c
 	$(CC) $(CFLAGS) $(DEPFLAGS) -o $@ sgp_lib/comp.c $(LIB)

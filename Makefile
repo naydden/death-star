@@ -13,21 +13,21 @@ AR=ar cr
 RANLIB=ranlib
 DEPFLAGS=-I/usr/include
 
-SRCS=aries.c deep.c ferror.c satutl.c sgdp4.c test1.c
+SRCS=sgp_lib/aries.c sgp_lib/deep.c sgp_lib/ferror.c sgp_lib/satutl.c sgp_lib/sgdp4.c main.c
 
 OBJS=${SRCS:.c=.o}
 LIB=-lm $(XLIBS)
 
-all: testsgp compvec
+all: main compvec
 
-testsgp: $(OBJS)
+main: $(OBJS)
 	$(CC) $(CFLAGS) $(DEPFLAGS) -o $@ $(OBJS) $(LIB)
 
-compvec: comp.c
-	$(CC) $(CFLAGS) $(DEPFLAGS) -o $@ comp.c $(LIB)
+compvec: sgp_lib/comp.c
+	$(CC) $(CFLAGS) $(DEPFLAGS) -o $@ sgp_lib/comp.c $(LIB)
 
 clean:
 	$(RM) core $(OBJS)
 
 %.o: %.c
-	$(CC) $(CFLAGS) $(DEPFLAGS) -c $*.c
+	$(CC) $(CFLAGS) $(DEPFLAGS) -c $< -o $@

@@ -5,7 +5,7 @@ var parse = require('csv-parse');
 const fs = require('fs');
 const _ = require('lodash');
 
-fs.readFile('./a.csv', (err, data) => {
+fs.readFile('./space-track-db.csv', (err, data) => {
 	parse(data, {columns: true}, (err, output) => {
 		let json = {};
 		json = _.filter(output,(obj) => {
@@ -20,7 +20,7 @@ fs.readFile('./a.csv', (err, data) => {
 		_.forEach(json, o => {
 			let randomElements = {
 				RAAN: RAAN,
-				epoch: 57400,
+				epoch: 6205,
 				ARGP: ARGP,
 				M: M,
 				e: (parseInt(o.APOGEE)-parseInt(o.PERIGEE))/(parseInt(o.APOGEE)+parseInt(o.PERIGEE)),

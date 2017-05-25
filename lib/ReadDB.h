@@ -44,4 +44,7 @@ KEP *read_neo ( const char *fname, int i0, int i1 );
 // Function to read KEP elements of Astorb DB file into structure
 KEP *read_astorb ( int i0, int i1 );
 
+// Function to read KEP elements of an objects around the Earth DB file into structure
+KEP *read_satellite ( int i0, int i1 );
+
 #endif

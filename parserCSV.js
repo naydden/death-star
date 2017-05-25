@@ -2,7 +2,6 @@
 // Program that adapts a database from space-track to a desired format
 // since some of the orbital elements are missing, they are randomly generated
 var parse = require('csv-parse');
-var generate = require('csv-generate');
 const fs = require('fs');
 const _ = require('lodash');
 

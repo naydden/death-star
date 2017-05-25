@@ -4,6 +4,14 @@
 		"selected_items":
 		[
 			[
+				"pa",
+				"parseInt"
+			],
+			[
+				"o",
+				"output"
+			],
+			[
 				"dia",
 				"diameter"
 			],
@@ -240,18 +248,60 @@
 	"buffers":
 	[
 		{
-			"file": "/home/bobz/Desktop/StartCam",
 			"settings":
 			{
-				"buffer_size": 194,
+				"buffer_size": 0,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "sgp-c-lib-20061025/sgp.h",
+			"settings":
+			{
+				"buffer_size": 6693,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "sgp-c-lib-20061025/testing.c",
+			"settings":
+			{
+				"buffer_size": 5060,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "Searching 1150 files for \"ThetaG\"\n\n/home/bobz/repos/death_star/sgp-c-lib-20061025/sgp_deep.c:\n  380  \t{\n  381  \tcase 1 :\n  382: \t\tthgr = ThetaG(satdata->epoch, &ds50);\n  383  \t\teq = satdata->eo;\n  384  \t\txnq = xnodp;\n\n/home/bobz/repos/death_star/sgp-c-lib-20061025/sgp_int.h:\n   90  \n   91  /* sgp_time.c */\n   92: double ThetaG(double epoch, double *ds50);\n   93  \n   94  /* sgp_deep.c */\n\n/home/bobz/repos/death_star/sgp-c-lib-20061025/sgp_time.c:\n   79  \n   80  /* ------------------------------------------------------------------- *\n   81:  * -------------------------------- ThetaG --------------------------- *\n   82   * ------------------------------------------------------------------- */\n   83  \n   84: double ThetaG(double epoch, double *ds50)\n   85  {\n   86  \t/* Reference:  The 1992 Astronomical Almanac, page B6. */\n\n4 matches across 3 files\n",
+			"settings":
+			{
+				"buffer_size": 857,
+				"line_ending": "Unix",
+				"name": "Find Results",
+				"scratch": true
+			}
+		},
+		{
+			"file": "sgp-c-lib-20061025/makefile",
+			"settings":
+			{
+				"buffer_size": 1217,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
 		},
 		{
+			"file": "sgp-c-lib-20061025/ChangeLog",
 			"settings":
 			{
-				"buffer_size": 0,
+				"buffer_size": 833,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "sgp-c-lib-20061025/main.c",
+			"settings":
+			{
+				"buffer_size": 2555,
 				"line_ending": "Unix"
 			}
 		}
@@ -377,17 +427,21 @@
 	],
 	"file_history":
 	[
+		"/home/bobz/Desktop/untitled folder/ChangeLog",
+		"/home/bobz/repos/death_star/parserCSV.js",
+		"/home/bobz/repos/death_star/database.csv",
+		"/home/bobz/repos/death_star/objects_in_orbit.json",
+		"/home/bobz/repos/death_star/database.cvs",
+		"/home/bobz/Desktop/StartCam",
 		"/home/bobz/Desktop/top_block.py",
 		"/home/bobz/Desktop/test.py",
 		"/home/bobz/Desktop/demodulated",
 		"/home/bobz/Desktop/ISS-passes.txt",
 		"/home/bobz/Desktop/test.grc",
 		"/home/bobz/Desktop/demod_demo.grc",
-		"/home/bobz/Desktop/StartCam",
 		"/home/bobz/repos/death_star/main.c",
 		"/home/bobz/.config/sublime-text-3/Packages/User/Pretty JSON.sublime-settings",
 		"/home/bobz/.config/sublime-text-3/Packages/Pretty JSON/Pretty JSON.sublime-settings",
-		"/home/bobz/repos/death_star/parserCSV.js",
 		"/home/bobz/Downloads/a.csv",
 		"/home/bobz/uni/optatives/high-perf-computing/Asteroids_MPI/ReadDB.c",
 		"/home/bobz/repos/death_star/ISS.txt",
@@ -500,21 +554,18 @@
 		"/home/bobz/repos/tfg/.gitignore",
 		"/home/bobz/repos/tfg/sublime/main.tex",
 		"/home/bobz/.config/sublime-text-3/Packages/LaTeXTools/LaTeXTools.sublime-settings",
-		"/home/bobz/repos/opencosmos/scripts/qberr",
-		"/home/bobz/repos/opencosmos/qbapp-fe/routes-config.js",
-		"/home/bobz/repos/opencosmos/qbapp-fe/api-client.js",
-		"/home/bobz/repos/opencosmos/qbapp-fe/out/bundle.js",
-		"/home/bobz/repos/opencosmos/qbapp-fe/node_modules/angular/angular.js"
+		"/home/bobz/repos/opencosmos/scripts/qberr"
 	],
 	"find":
 	{
-		"height": 38.0
+		"height": 48.0
 	},
 	"find_in_files":
 	{
 		"height": 104.0,
 		"where_history":
 		[
+			"<open folders>",
 			"<current file>",
 			"",
 			"<open folders>",
@@ -527,6 +578,8 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"ThetaG",
+			"sat_data",
 			"firdes",
 			"fid",
 			"st",
@@ -605,34 +658,6 @@
 			[
 				{
 					"buffer": 0,
-					"file": "/home/bobz/Desktop/StartCam",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 194,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								194,
-								194
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Text/Plain text.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
 					"semi_transient": false,
 					"settings":
 					{
@@ -655,7 +680,209 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
+					"stack_index": 6,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "sgp-c-lib-20061025/sgp.h",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 6693,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								26,
+								26
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
 					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "sgp-c-lib-20061025/testing.c",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 5060,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2947,
+								2947
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 1134.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 857,
+						"regions":
+						{
+							"match":
+							{
+								"flags": 112,
+								"regions":
+								[
+									[
+										137,
+										143
+									],
+									[
+										322,
+										328
+									],
+									[
+										581,
+										587
+									],
+									[
+										721,
+										727
+									]
+								],
+								"scope": ""
+							}
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"detect_indentation": false,
+							"line_numbers": false,
+							"output_tag": 1,
+							"result_base_dir": "",
+							"result_file_regex": "^([^ \t].*):$",
+							"result_line_regex": "^ +([0-9]+):",
+							"scroll_past_end": true,
+							"syntax": "Packages/Default/Find Results.hidden-tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "sgp-c-lib-20061025/makefile",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1217,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								85,
+								85
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Makefile/Makefile.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "sgp-c-lib-20061025/ChangeLog",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 833,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "sgp-c-lib-20061025/main.c",
+					"semi_transient": true,
+					"settings":
+					{
+						"buffer_size": 2555,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
 					"type": "text"
 				}
 			]
@@ -745,7 +972,7 @@
 	"show_minimap": true,
 	"show_open_files": false,
 	"show_tabs": true,
-	"side_bar_visible": false,
+	"side_bar_visible": true,
 	"side_bar_width": 197.0,
 	"status_bar_visible": true,
 	"template_settings":

@@ -205,6 +205,7 @@ void GetPlanetKEP ( double *sma_o, double *ecc_o, double *inc_o, double *argp_o,
       sma = 0.387098;
       ecc = 0.205635 + 5.59E-10 * d;
       M = 168.6562 + 4.0923344368 * d;
+      break;
 
     case 2: // Venus
       raan = 76.6799 + 2.46590E-5 * d;
@@ -213,6 +214,7 @@ void GetPlanetKEP ( double *sma_o, double *ecc_o, double *inc_o, double *argp_o,
       sma = 0.723330;
       ecc = 0.006773 - 1.302E-9 * d;
       M = 48.0052 + 1.6021302244 * d;
+      break;
 
     case 3: // Earth
       raan = 0.0;
@@ -221,6 +223,7 @@ void GetPlanetKEP ( double *sma_o, double *ecc_o, double *inc_o, double *argp_o,
       sma = 1.000000;
       ecc = 0.016709 - 1.151E-9 * d;
       M = 356.0470 + 0.9856002585 * d;
+      break;
 
     case 4: // Mars
       raan = 49.5574 + 2.11081E-5 * d;
@@ -229,6 +232,7 @@ void GetPlanetKEP ( double *sma_o, double *ecc_o, double *inc_o, double *argp_o,
       sma = 1.523688;
       ecc = 0.093405 + 2.516E-9 * d;
       M = 18.6021 + 0.5240207766 * d;
+      break;
 
     case 5: // Jupiter
       raan = 100.4542 + 2.76854E-5 * d;
@@ -237,6 +241,7 @@ void GetPlanetKEP ( double *sma_o, double *ecc_o, double *inc_o, double *argp_o,
       sma = 5.20256;
       ecc = 0.048498 + 4.469E-9 * d;
       M = 19.8950 + 0.0830853001 * d;
+      break;
 
     case 6: // Saturn
       raan = 113.6634 + 2.38980E-5 * d;
@@ -245,6 +250,7 @@ void GetPlanetKEP ( double *sma_o, double *ecc_o, double *inc_o, double *argp_o,
       sma = 9.55475;
       ecc = 0.055546 - 9.499E-9 * d;
       M = 316.9670 + 0.0334442282 * d;
+      break;
 
     case 7: // Uranus
       raan = 74.0005 + 1.3978E-5 * d;
@@ -253,6 +259,7 @@ void GetPlanetKEP ( double *sma_o, double *ecc_o, double *inc_o, double *argp_o,
       sma = 19.18171 - 1.55E-8 * d;
       ecc = 0.047318 + 7.45E-9 * d;
       M = 142.5905 + 0.011725806 * d;
+      break;
 
     case 8: // Neptune
       raan = 131.7806 + 3.0173E-5 * d;
@@ -261,6 +268,7 @@ void GetPlanetKEP ( double *sma_o, double *ecc_o, double *inc_o, double *argp_o,
       sma = 30.05826 + 3.313E-8 * d;
       ecc = 0.008606 + 2.15E-9 * d;
       M = 260.2471 + 0.005995147 * d;
+      break;
   }
 
   // Convert units to [rad] and [km]

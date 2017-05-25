@@ -89,27 +89,24 @@ KEP *read_astorb ( int i0, int i1 )
 }
 
 //Function to read the KEP elements of Objects in orbit DB file into structure
-KEP *read_satellite ( int i0, int i1 )
+KEP *read_sat ( int i0, int i1 )
 {
   // Allocate struct
   KEP *ast = (KEP*) malloc((i1 - i0) * sizeof(KEP)); assert(ast != NULL);
 
   // Open files
-
-  FILE *fidK  = fopen("database.csv","r"); assert(fidK != NULL);
+  FILE *fid = fopen("testDB.csv","r"); assert(fid != NULL);
 
   // Skip the first i0 lines (plus header)
-  for (int k=0; k<i0; k++)
-  {
-    fscanf(fidK,"%*[^\n]\n");
-  }
+  for (int k=0; k<i0; k++) fscanf(fid,"%*[^\n]\n");
 
   // Read i0-to-i1 formatted lines
   for (int i=0, st=0; i<(i1-i0) && st!=EOF; i++)
   {
-    st = fscanf(fidK,"%[^\n] %lf %lf %lf %lf %lf %lf %lf\n",
-      ast[i].name, &ast[i].sma, &ast[i].ecc, &ast[i].inc, 
-      &ast[i].argp, &ast[i].raan, &ast[i].M, &ast[i].epoch);
+    // Read RAW data
+    st = fscanf(fid,"%[^,],%lf,%lf,%lf,%lf,%lf,%lf,%lf,%*[^\n]\n",
+      ast[i].name, &ast[i].sma, &ast[i].ecc,
+      &ast[i].inc, &ast[i].argp, &ast[i].raan, &ast[i].M, &ast[i].epoch);
     
     // Adjust units
     ast[i].sma = ast[i].sma * 1000;
@@ -120,7 +117,7 @@ KEP *read_satellite ( int i0, int i1 )
   }
 
   // Close file
-  fclose(fidK);
+  fclose(fid);
 
   // Return KEP structure
   return(ast);

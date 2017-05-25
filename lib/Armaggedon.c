@@ -46,7 +46,34 @@ int main(int argc, char **argv){
 
 	KEP *object;
 	object=read_sat(a1-1, a2);
-	printf("Asteroid: %d Name: %s SMA: %f \n", a1+2, object[2].name, object[2].sma);
+
+	double collision=0;
+	double CollisionTime=1000;
+	int t=0;
+
+	int TimeInit=0;
+	int TimeEnd=15;
+	int TimeStep=1;
+	int TimeComm=5;
+
+	for(int Time=TimeInit+1; Time<=TimeEnd; Time=Time+TimeStep){
+
+		//Propagate things and other stuff
+
+
+		if(Time%TimeComm==0){
+			r=MPI_Barrier(MPI_COMM_WORLD);
+			MPI_Allreduce(&collision, &collision, 1, MPI_DOUBLE, MPI_MAX, MPI_COMM_WORLD);
+			MPI_Allreduce(&CollisionTime, &CollisionTime, 1, MPI_DOUBLE, MPI_MIN, MPI_COMM_WORLD);
+			if(collision==1){
+				break;
+			}
+			r=MPI_Barrier(MPI_COMM_WORLD);
+		}
+	}
+	if(quisoc()==0){
+		printf("Collision= %f Time of collision= %f \n", collision, CollisionTime);
+	}
 
 	MPI_Finalize();
 

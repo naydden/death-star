@@ -25,6 +25,9 @@ all: main test compvec
 main: $(OBJS) main.c
 	$(CC) $(CFLAGS) $(DEPFLAGS) -o $@ $(OBJS) main.c $(LIB) -lm
 
+main-seq: $(OBJS) main_sequential.c
+	$(CC) $(CFLAGS) $(DEPFLAGS) -o $@ $(OBJS) main_sequential.c $(LIB) -lm
+
 test: $(OBJS) test1.c
 	$(CC) $(CFLAGS) $(DEPFLAGS) -o $@ $(OBJS) test1.c $(LIB) -lm
 

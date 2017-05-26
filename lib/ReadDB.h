@@ -18,6 +18,14 @@ Spring 2017
 #define MU (1.32712440018E11)
 #endif
 
+#ifndef E_MU
+#define E_MU (3.986004415E5)
+#endif
+
+#ifndef R_E
+#define R_E (6.371E3)
+#endif
+
 #ifndef AU
 #define AU (1.495978707E8)
 #endif

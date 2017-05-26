@@ -42,34 +42,65 @@ int main(int argc, char **argv){
 	a1=quisoc()*N/quants()+1;
 	a2=(quisoc()+1)*N/quants();
 
+	KEP *satellite;
+	satellite=read_sat(16, 17);
 	KEP *object;
 	object=read_sat(a1-1, a2);
 
-	double collision=0;
-	double CollisionTime=1000;
+	int collision=0;
+	int prevColl=0;
+	int CollisionTime=1000;
+	int CollisionTimeG=1000;
+	KEP collider;
 
 	int TimeInit=0;
-	int TimeEnd=15;
+	int TimeEnd=20;
 	int TimeStep=1;
 	int TimeComm=5;
 
+	double rs_ijk[3];
+	double ro_ijk[3];
+	double distance;
+	double SecDistance=1;
+
 	for(int Time=TimeInit+1; Time<=TimeEnd; Time=Time+TimeStep){
-
-		//Propagate things and other stuff
-
-
+		if(quisoc()==0){
+			printf("Time: %d \n", Time);
+		}
+		Propagate_KEP2ICF ( rs_ijk, satellite[0].sma, satellite[0].ecc, satellite[0].inc, satellite[0].argp, satellite[0].raan, satellite[0].M, Time-TimeInit, E_MU );
+		for(int k=a1; k<=a2; k++){
+			Propagate_KEP2ICF ( ro_ijk, object[k-a1].sma, object[k-a1].ecc, object[k-a1].inc, object[k-a1].argp, object[k-a1].raan, object[k-a1].M, Time-TimeInit, E_MU );
+			distance=(rs_ijk[0]-ro_ijk[0])*(rs_ijk[0]-ro_ijk[0])+(rs_ijk[1]-ro_ijk[1])*(rs_ijk[1]-ro_ijk[1])+(rs_ijk[2]-ro_ijk[2])*(rs_ijk[2]-ro_ijk[2]);
+			distance=sqrt(distance);
+			if(distance<SecDistance){
+				if(prevColl==0){
+					collision=1;
+					prevColl=1;
+					CollisionTime=Time;
+					collider=object[k-a1];
+				}
+			}
+		}
+		
 		if(Time%TimeComm==0){
 			r=MPI_Barrier(MPI_COMM_WORLD);
-			MPI_Allreduce(&collision, &collision, 1, MPI_DOUBLE, MPI_MAX, MPI_COMM_WORLD);
-			MPI_Allreduce(&CollisionTime, &CollisionTime, 1, MPI_DOUBLE, MPI_MIN, MPI_COMM_WORLD);
+			MPI_Allreduce(&collision, &collision, 1, MPI_INT, MPI_MAX, MPI_COMM_WORLD);
 			if(collision==1){
+				MPI_Allreduce(&CollisionTime, &CollisionTimeG, 1, MPI_INT, MPI_MIN, MPI_COMM_WORLD);
 				break;
 			}
-			r=MPI_Barrier(MPI_COMM_WORLD);
 		}
 	}
-	if(quisoc()==0){
-		printf("Collision= %f Time of collision= %f \n", collision, CollisionTime);
+	r=MPI_Barrier(MPI_COMM_WORLD);
+	if(collision==1){
+		if(CollisionTime==CollisionTimeG){
+			printf("Collider: %s Time of collision: %d \n", collider.name, CollisionTimeG);
+		}
+	}
+	else{
+		if(quisoc()==0){
+			printf("No collision detected \n");
+		}
 	}
 
 	MPI_Finalize();

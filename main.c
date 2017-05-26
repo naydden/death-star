@@ -6,34 +6,37 @@
 
 #include "sgp_lib/sgdp4h.h"
 #include "lib/ReadDB.h"
+
+// Earth cte and radius
+long int GM = 3.98600415e5;
+long int RT = 6371;
+
 //  returns x,y,z vector for a given time.
 void xyz_position(double jd, xyz_t *pos) {
-
 	// satpos_xyz propagates the orbital elements given in init_sgpd4 and converts to xyz
-	if(satpos_xyz(jd, pos, NULL) == SGDP4_ERROR) return;
-
-	// printf("%12.4f   %16.8f %16.8f %16.8f %16.12f %16.12f %16.12f\n",
-	// 	tsince,
-	// 	pos.x, pos.y, pos.z,
-	// 	vel.x, vel.y, vel
+	if(satpos_xyz(jd, pos, NULL) == SGDP4_ERROR) exit(0);
+	return;
 }
 
 //  returns 1 if there is a crash and 0 if there is not
 //  has to return timestamp and object
-// int is_crash(xyz_t *sat_pos, xyz_t *deb_pos, int d) {
-// 	double distance;
-// 	distance = sqrt((sat_pos.x - deb_pos.x)*(sat_pos.x - deb_pos.x) + (sat_pos.y - deb_pos.y)*(sat_pos.y - deb_pos.y) + (sat_pos.z - deb_pos.z)*(sat_pos.z - deb_pos.z));
+int is_crash(xyz_t *sat_pos, xyz_t *deb_pos, int d) {
+	double distance;
+	distance = sqrt((sat_pos->x - deb_pos->x)*(sat_pos->x - deb_pos->x) + (sat_pos->y - deb_pos->y)*(sat_pos->y - deb_pos->y) + (sat_pos->z - deb_pos->z)*(sat_pos->z - deb_pos->z));
 
-// 	printf("Distance: %f\n", distance);
-// 	printf("Security: %d\n", d);
-// 	if ( distance <= d) {
-// 		return 1;
-// 	}
-// }
+	printf("Distance: %f\n", distance);
+	printf("Security: %d\n", d);
+	if ( distance <= d) {
+		return 1;
+	}
+	return 0;
+}
 
 int deb_valid(KEP *deb_object) {
 	//  checks mean motion
-	if( (86400/(2*M_PI*sqrt(deb_object->sma*deb_object->sma*deb_object->sma/MU))) > 18 ) {
+	double mean_motion = (86400/(2*M_PI*sqrt((RT+deb_object->sma)*(RT+deb_object->sma)*(RT+deb_object->sma)/GM)));
+	printf("%f\n",mean_motion);
+	if( mean_motion > 18 ) {
 		return 1;
 	}
 	return 0;
@@ -72,6 +75,7 @@ int main(int argc, char **argv)
 	int tle_satus = -1;
 	int diameter_satuts = -1;
 	int zone_status = -1;
+
 
 	int imode;
 	xyz_t sat_pos, deb_pos;
@@ -130,86 +134,80 @@ int main(int argc, char **argv)
 
 	KEP *deb_object;
 	//  num of debris object to consider till 17538
-	int n = 4;
-	deb_object = read_sat(26, 30);
+	int n = 3;
+	deb_object = read_sat(27, 30);
+	printf("%f\n", deb_object[2].sma);
 
 	if (!tle_sat) {
 		fprintf(stderr, "Error while reading satellite TLE.'\n");
 		return 1;
 	}
-	printf("%d\n",diameter);
-	printf("%d\n",security_ratio);
+
 	// read_twoline returns orbital elements out of a TLE
 	if (read_twoline(tle_sat, 0, &orb) == 0) {
 		print_orb(&orb);
 		fclose(tle_sat);
 
-		for(ii=0; ii <= 1; ii++)
+		imode = init_sgdp4(&orb);
+		check_sgdp4(&imode);
+
+		for(ii=0; ii <= 4; ii++)
 			{
-			if(ii != iend)
-				{
-				tsince=ts + ii*delta;
+				if(ii != iend) {
+					tsince=ts + ii*delta;
 				}
-			else
-				{
-				tsince=ts + delta;
+				else {
+					tsince=ts + delta;
 				}
-			jd = SGDP4_jd0 + tsince / 1440.0;
-			// printf("Time: %f\n", tsince );
-			// /*********** SATELLITE **************************************/
-			// // init_sgdp4 passes all of the required orbital elements to
-			// // the sgdp4() function together with the pre-calculated constants.
-			imode = init_sgdp4(&orb);
-			check_sgdp4(&imode);
-			//  stops program if data is not valid for SGDP
-			if(imode == SGDP4_ERROR) exit(1);
-			// xyz_position(jd, &sat_pos);
-			// printf("%d\n",sat_pos.x);
-			// printf("%d\n",sat_pos.y);
-			// printf("%d\n",sat_pos.z);
 
-			if(satpos_xyz(jd, &sat_pos, NULL) == SGDP4_ERROR) break;
+				jd = SGDP4_jd0 + tsince / 1440.0;
+				/*********** SATELLITE **************************************/
+				// init_sgdp4 passes all of the required orbital elements to
+				// the sgdp4() function together with the pre-calculated constants.
+				imode = init_sgdp4(&orb);
+				check_sgdp4(&imode);
+				//  stops program if data is not valid for SGDP
+				if(imode == SGDP4_ERROR) exit(1);
+				xyz_position(jd, &sat_pos);
 
-			printf("%12.4f   %16.8f %16.8f %16.8f\n",
-				tsince,
-				sat_pos.x, sat_pos.y, sat_pos.z);
+				printf("%12.4f   %16.8f %16.8f %16.8f\n",
+					tsince,
+					sat_pos.x, sat_pos.y, sat_pos.z);
+				/*********** DEBRIS **************************************/
+				for(int deb=0; deb < n; deb++) {
+					orbit_t orb_deb;
+
+					if (deb_valid(&deb_object[deb]) == 1) continue;
+
+					orb_deb.ep_year = (int)deb_object[deb].epoch/365+100;
+					orb_deb.ep_day = 1.0;
+					orb_deb.rev = 86400/(2*M_PI*sqrt((RT+deb_object[deb].sma)*(RT+deb_object[deb].sma)*(RT+deb_object[deb].sma)/GM));
+					orb_deb.bstar = 1.0608e-05;
+					orb_deb.eqinc = deb_object[deb].inc;
+					orb_deb.ecc = deb_object[deb].ecc;
+					orb_deb.mnan = deb_object[deb].M;
+					orb_deb.argp = deb_object[deb].argp;
+					orb_deb.ascn = deb_object[deb].raan;
+					orb_deb.smjaxs = deb_object[deb].sma;
+					orb_deb.norb = orb_deb.rev*(int)deb_object[deb].epoch;
+					orb_deb.satno = 2;
+
+					printf("---------\n");
+					print_orb(&orb_deb);
+
+					imode = init_sgdp4(&orb_deb);
+					check_sgdp4(&imode);
+					//  stops program if data is not valid for SGDP
+					if(imode == SGDP4_ERROR) exit(1);
+					xyz_position(jd, &deb_pos);
+					if (is_crash(&sat_pos,&deb_pos, diameter*security_ratio) == 1) {
+						printf("Crashed with %s\n", deb_object[deb].name);
+						printf("Crashed time %lf\n",tsince);
+						exit(0);
+					}
+
+				}
 			}
-
-			/*********** DEBRIS **************************************/
-			// for(int deb=0; deb <= n; deb++) {
-
-			// 	orbit_t orb_deb;
-			// 	if (deb_valid(&deb_object[deb]) == 1) continue;
-			// 	printf("hello it's me %d\n", deb );
-			// 	orb_deb.ep_year = (int)deb_object[deb].epoch/365+100;
-			// 	orb_deb.ep_day = 1.0;
-			// 	orb_deb.rev = 86400/(2*M_PI*sqrt(deb_object[deb].sma*deb_object[deb].sma*deb_object[deb].sma/MU));
-			// 	orb_deb.bstar = 1.0608e-05;
-			// 	orb_deb.eqinc = deb_object[deb].inc;
-			// 	orb_deb.ecc = deb_object[deb].ecc;
-			// 	orb_deb.mnan = deb_object[deb].M;
-			// 	orb_deb.argp = deb_object[deb].argp;
-			// 	orb_deb.ascn = deb_object[deb].raan;
-			// 	orb_deb.smjaxs = deb_object[deb].sma;
-			// 	orb_deb.norb = orb_deb.rev*(int)deb_object[deb].epoch;
-			// 	orb_deb.satno = 2;
-
-			// 	printf("---------\n");
-			// 	print_orb(&orb_deb);
-
-			// 	imode = init_sgdp4(&orb_deb);
-			// 	check_sgdp4(&imode);
-			// 	//  stops program if data is not valid for SGDP
-			// 	if(imode == SGDP4_ERROR) exit(1);
-			// 	xyz_position(jd, &deb_pos);
-			// 	// if (is_crash(&sat_pos,&deb_pos, diameter*security_ratio) == 1) {
-			// 	// 	printf("Crashed with %s", deb_object[deb].name);
-			// 	// 	printf("Crashed time %lf", jd);
-			// 	// 	exit(0);
-			// 	// }
-
-			// }
 		}
-
 	exit(0);
 }

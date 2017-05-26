@@ -37,39 +37,54 @@ int main(int argc, char **argv){
 	int a2;
 
 	//Find the number of asteroids somehow. Meanwhile, use this:
-	N=20;
+	N=10;
 
 	a1=quisoc()*N/quants()+1;
 	a2=(quisoc()+1)*N/quants();
 
+	KEP *satellite;
+	satellite=read_sat(0, 1);
 	KEP *object;
 	object=read_sat(a1-1, a2);
 
-	double collision=0;
+	int collision=0;
 	double CollisionTime=1000;
 
 	int TimeInit=0;
-	int TimeEnd=15;
+	int TimeEnd=2;
 	int TimeStep=1;
 	int TimeComm=5;
 
+	double rs_ijk[3];
+	double ro_ijk[3];
+	double distance;
+	double SecDistance=1;
+
 	for(int Time=TimeInit+1; Time<=TimeEnd; Time=Time+TimeStep){
-
-		//Propagate things and other stuff
-
-
+		Propagate_KEP2ICF ( rs_ijk, satellite[0].sma, satellite[0].ecc, satellite[0].inc, satellite[0].argp, satellite[0].raan, satellite[0].M, Time-TimeInit, E_MU );
+		for(int k=a1; k<=a2; k++){
+			Propagate_KEP2ICF ( ro_ijk, object[k-a1].sma, object[k-a1].ecc, object[k-a1].inc, object[k-a1].argp, object[k-a1].raan, object[k-a1].M, Time-TimeInit, E_MU );
+			distance=(rs_ijk[0]-ro_ijk[0])*(rs_ijk[0]-ro_ijk[0])+(rs_ijk[1]-ro_ijk[1])*(rs_ijk[1]-ro_ijk[1])+(rs_ijk[2]-ro_ijk[2])*(rs_ijk[2]-ro_ijk[2]);
+			distance=sqrt(distance);
+			if(distance<SecDistance){
+				collision=1;
+				CollisionTime=Time;
+			}
+			printf("%s %f %d \n", object[k-a1].name, distance, collision);
+		}
+		
 		if(Time%TimeComm==0){
 			r=MPI_Barrier(MPI_COMM_WORLD);
-			MPI_Allreduce(&collision, &collision, 1, MPI_DOUBLE, MPI_MAX, MPI_COMM_WORLD);
+			MPI_Allreduce(&collision, &collision, 1, MPI_INT, MPI_MAX, MPI_COMM_WORLD);
 			MPI_Allreduce(&CollisionTime, &CollisionTime, 1, MPI_DOUBLE, MPI_MIN, MPI_COMM_WORLD);
 			if(collision==1){
 				break;
 			}
-			r=MPI_Barrier(MPI_COMM_WORLD);
 		}
 	}
+	r=MPI_Barrier(MPI_COMM_WORLD);
 	if(quisoc()==0){
-		printf("Collision= %f Time of collision= %f \n", collision, CollisionTime);
+		printf("Collision= %d Time of collision= %f \n", collision, CollisionTime);
 	}
 
 	MPI_Finalize();

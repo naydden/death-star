@@ -108,7 +108,7 @@ KEP *read_sat ( int i0, int i1 )
       ast[i].name, &ast[i].sma, &ast[i].ecc,&ast[i].inc, &ast[i].argp, &ast[i].raan, &ast[i].M, &ast[i].epoch); //%*[^\n]\n
     
     // Adjust units
-    ast[i].sma = ast[i].sma;
+    ast[i].sma = ast[i].sma + R_E;
     ast[i].inc = ast[i].inc * M_PI/180.0;
     ast[i].argp = ast[i].argp * M_PI/180.0;
     ast[i].raan = ast[i].raan * M_PI/180.0;

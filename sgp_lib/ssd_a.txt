@@ -1,4 +1,4 @@
-0.0 1.5 530 -1 23333
+0.0 1 1 -1 25544
 
 Format=tstart, tdelta, imax, iend, satno to find (0 for all)
 if(ii == iend) then do one step back to ii=1 in loop.

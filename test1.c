@@ -22,7 +22,7 @@
 
 static const char SCCSid[] = "@(#)test.c        1.00 (C) 1995 psc sgdp4 demo - main file";
 
-#include "sgdp4h.h"
+#include "sgp_lib/sgdp4h.h"
 
 long Isat=0;
 
@@ -84,10 +84,10 @@ double jd, tsince;
 long satno=0;
 int imode;
 
-char filename[ST_SIZE] = "twoline.txt";
+char filename[ST_SIZE] = "sgp_lib/twoline.txt";
 FILE *fp=NULL;
 
-char ctrl_name[ST_SIZE] = "ssd_a.txt";
+char ctrl_name[ST_SIZE] = "sgp_lib/ssd_a.txt";
 
 long ii,imax=0,iend=0;
 

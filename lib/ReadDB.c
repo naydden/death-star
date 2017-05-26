@@ -95,7 +95,7 @@ KEP *read_sat ( int i0, int i1 )
   KEP *ast = (KEP*) malloc((i1 - i0) * sizeof(KEP)); assert(ast != NULL);
 
   // Open files
-  FILE *fid = fopen("database.csv","r"); assert(fid != NULL);
+  FILE *fid = fopen("lib/database.csv","r"); assert(fid != NULL);
 
   // Skip the first i0 lines (plus header)
   for (int k=0; k<i0; k++) fscanf(fid,"%*[^\n]\n");

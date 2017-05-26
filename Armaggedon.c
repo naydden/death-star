@@ -37,13 +37,24 @@ int main(int argc, char **argv){
 	int a2;
 
 	//Find the number of asteroids somehow. Meanwhile, use this:
-	N=20;
+	N=1000;
 
 	a1=quisoc()*N/quants()+1;
 	a2=(quisoc()+1)*N/quants();
 
 	KEP *satellite;
-	satellite=read_sat(16, 17);
+	satellite=read_sat(0, 1);
+	//satellite[0].name="ISS";
+	
+	satellite[0].sma=6775;
+	satellite[0].ecc=0.0005238;
+	satellite[0].inc=0.9012898;
+	satellite[0].argp=2.9158675;
+	satellite[0].raan=3.3322712;
+	satellite[0].M=4.8949644;
+	satellite[0].epoch=6342.53;
+	
+
 	KEP *object;
 	object=read_sat(a1-1, a2);
 
@@ -54,14 +65,14 @@ int main(int argc, char **argv){
 	KEP collider;
 
 	int TimeInit=0;
-	int TimeEnd=20;
+	int TimeEnd=1000;
 	int TimeStep=1;
 	int TimeComm=5;
 
 	double rs_ijk[3];
 	double ro_ijk[3];
 	double distance;
-	double SecDistance=1;
+	double SecDistance=10000;
 
 	for(int Time=TimeInit+1; Time<=TimeEnd; Time=Time+TimeStep){
 		if(quisoc()==0){

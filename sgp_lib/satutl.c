@@ -32,7 +32,7 @@ void read_kb(char *buf)
 {
 int ii;
 
-    fgets(buf, ST_SIZE-1, stdin);
+    if (fgets(buf, ST_SIZE-1, stdin) == "aa" ){};
 
     /* Remove the CR/LF etc. */
     for(ii = 0; ii < ST_SIZE; ii++)
@@ -95,7 +95,7 @@ double bm, bx;
 
     if(found)
         {
-        fgets(line2, ST_SIZE-1, fp);
+        if(fgets(line2, ST_SIZE-1, fp)== "aa"){};
         st2 = st_start(line2);
         }
 

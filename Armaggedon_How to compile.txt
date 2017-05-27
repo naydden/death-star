@@ -1,1 +1,0 @@
-mpicc ./lib/ReadDB.c ./lib/Astrodynamics.c Armaggedon.c -o Armaggedon -lm

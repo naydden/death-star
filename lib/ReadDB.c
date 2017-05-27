@@ -22,7 +22,7 @@ KEP *read_neo ( const char *fname, int i0, int i1 )
   FILE *fid = fopen(fname,"r"); assert(fid != NULL);
 
   // Skip the first i0 lines (plus header)
-  for (int k=0; k<i0; k++) fscanf(fid,"%*[^\n]\n");
+  for (int k=0; k<i0; k++) if(fscanf(fid,"%*[^\n]\n") == 1 );
 
   // Read i0-to-i1 formatted lines
   for (int i=0, st=0; i<(i1-i0) && st!=EOF; i++)
@@ -60,8 +60,8 @@ KEP *read_astorb ( int i0, int i1 )
   // Skip the first i0 lines (plus header)
   for (int k=0; k<i0; k++)
   {
-    fscanf(fidN,"%*[^\n]\n");
-    fscanf(fidK,"%*[^\n]\n");
+    if( fscanf(fidN,"%*[^\n]\n") == 1){}
+    if( fscanf(fidK,"%*[^\n]\n") == 1 ){}
   }
 
   // Read i0-to-i1 formatted lines
@@ -98,7 +98,7 @@ KEP *read_sat ( int i0, int i1 )
   FILE *fid = fopen("lib/database.csv","r"); assert(fid != NULL);
 
   // Skip the first i0 lines (plus header)
-  for (int k=0; k<i0; k++) fscanf(fid,"%*[^\n]\n");
+  for (int k=0; k<i0; k++) if( fscanf(fid,"%*[^\n]\n") == 1);
 
   // Read i0-to-i1 formatted lines
   for (int i=0, st=0; i<(i1-i0) && st!=EOF; i++)

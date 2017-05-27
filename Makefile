@@ -20,7 +20,7 @@ SRCS=${LIBDIR}/aries.c ${LIBDIR}/deep.c ${LIBDIR}/ferror.c ${LIBDIR}/satutl.c ${
 OBJS=${SRCS:.c=.o}
 LIB=-lm $(XLIBS)
 
-all: main test compvec
+all: main main-seq Armaggedon
 
 main: $(OBJS) main.c
 	$(CC) $(CFLAGS) $(DEPFLAGS) -o $@ $(OBJS) main.c $(LIB) -lm
@@ -28,14 +28,17 @@ main: $(OBJS) main.c
 main-seq: $(OBJS) main_sequential.c
 	$(CC) $(CFLAGS) $(DEPFLAGS) -o $@ $(OBJS) main_sequential.c $(LIB) -lm
 
-test: $(OBJS) test1.c
-	$(CC) $(CFLAGS) $(DEPFLAGS) -o $@ $(OBJS) test1.c $(LIB) -lm
+Armaggedon: Armaggedon.c
+	mpicc ./lib/ReadDB.c ./lib/Astrodynamics.c Armaggedon.c -o $@ -lm
 
 compvec: ${LIBDIR}/comp.c
 	$(CC) $(CFLAGS) $(DEPFLAGS) -o $@ sgp_lib/comp.c $(LIB)
 
+test: $(OBJS) ${LIBDIR}/test1.c
+	$(CC) $(CFLAGS) $(DEPFLAGS) -o $@ $(OBJS) sgp_lib/test1.c $(LIB) -lm
+
 clean:
-	$(RM) core main main.o test test.o $(OBJS)
+	$(RM) ${LIBDIR}/*.o *.o $(OBJS)
 
 %.o: %.c
 	$(CC) $(CFLAGS) $(DEPFLAGS) -c $< -o $@

@@ -4,6 +4,10 @@
 		"selected_items":
 		[
 			[
+				"opt",
+				"optarg"
+			],
+			[
 				"sim",
 				"sim_time"
 			],
@@ -316,28 +320,10 @@
 	"buffers":
 	[
 		{
-			"file": "main_sequential.c",
+			"file": "main_parallel.c",
 			"settings":
 			{
-				"buffer_size": 6508,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "main_sequential.h",
-			"settings":
-			{
-				"buffer_size": 384,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "Makefile",
-			"settings":
-			{
-				"buffer_size": 914,
+				"buffer_size": 8509,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -460,32 +446,33 @@
 	"expanded_folders":
 	[
 		"/home/bobz/repos/death_star",
-		"/home/bobz/repos/death_star/lib",
 		"/home/bobz/repos/death_star/sgp_lib"
 	],
 	"file_history":
 	[
+		"/home/bobz/repos/death_star/Makefile",
+		"/home/bobz/repos/death_star/main_sequential.c",
+		"/home/bobz/repos/death_star/sgp_lib/satutl.c",
+		"/home/bobz/repos/death_star/main_parallel.c",
+		"/home/bobz/repos/death_star/main.c",
+		"/home/bobz/repos/death_star/sgp_lib/test1.c",
+		"/home/bobz/repos/death_star/lib/ReadDB.c",
+		"/home/bobz/repos/death_star/main_sequential.h",
 		"/home/bobz/uni/optatives/high-perf-computing/Makefiles/Makefile03",
 		"/home/bobz/uni/optatives/high-perf-computing/Makefiles/Makefile04",
 		"/home/bobz/uni/optatives/high-perf-computing/Makefiles/Makefile05",
 		"/home/bobz/repos/death_star/sgp_lib/sgdp4.c",
-		"/home/bobz/repos/death_star/main_sequential.h",
-		"/home/bobz/repos/death_star/Makefile",
 		"/home/bobz/repos/death_star/sgp_lib/comp.c",
 		"/home/bobz/repos/death_star/sgp_lib/ferror.c",
 		"/home/bobz/repos/death_star/sgp_lib/ssd_a.txt",
 		"/home/bobz/repos/death_star/test1.c",
 		"/home/bobz/repos/death_star/sgp_lib/satutl.h",
-		"/home/bobz/repos/death_star/main.c",
 		"/home/bobz/repos/death_star/Armaggedon.c",
 		"/home/bobz/repos/death_star/sgp_lib/deep.c",
 		"/home/bobz/repos/death_star/sgp_lib/sgdp4h.h",
 		"/home/bobz/repos/death_star/lib/database.csv",
-		"/home/bobz/repos/death_star/sgp_lib/satutl.c",
 		"/home/bobz/repos/death_star/sgp_lib/twoline.txt",
-		"/home/bobz/repos/death_star/lib/ReadDB.c",
 		"/home/bobz/repos/death_star/database.csv",
-		"/home/bobz/repos/death_star/sgp_lib/test1.c",
 		"/home/bobz/repos/death_star/lib/astorb_kep.txt",
 		"/home/bobz/repos/death_star/parserCSV.js",
 		"/home/bobz/repos/death_star/ISS.txt",
@@ -590,9 +577,7 @@
 		"/home/bobz/repos/opencosmos/qbapp-fe/parametricDesign-controller.js",
 		"/home/bobz/repos/opencosmos/qbapp-fe/Makefile",
 		"/home/bobz/repos/opencosmos/qbapp-fe/config.js",
-		"/home/bobz/repos/opencosmos/qbapp-fe/login-controller.js",
-		"/home/bobz/repos/opencosmos/qbapp-fe/header.jade",
-		"/home/bobz/repos/opencosmos/qbapp-fe/backEnd-mocks.js"
+		"/home/bobz/repos/opencosmos/qbapp-fe/login-controller.js"
 	],
 	"find":
 	{
@@ -622,6 +607,8 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"Looking for sat",
+			"fscanf",
 			"||",
 			"Looking",
 			"CLOCKS_PER_SEC",
@@ -747,8 +734,7 @@
 			"error",
 			"column",
 			"hover",
-			"selectable",
-			"italic"
+			"selectable"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -782,24 +768,24 @@
 	"groups":
 	[
 		{
-			"selected": 1,
+			"selected": 0,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "main_sequential.c",
+					"file": "main_parallel.c",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 6508,
+						"buffer_size": 8509,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								204,
-								204
+								8408,
+								8408
 							]
 						],
 						"settings":
@@ -808,66 +794,10 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "main_sequential.h",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 384,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/C++/C++.sublime-syntax"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 3738.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "Makefile",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 914,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								357,
-								340
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Makefile/Makefile.sublime-syntax"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
 					"type": "text"
 				}
 			]
@@ -936,7 +866,7 @@
 		[
 			[
 				"",
-				"~/uni/optatives/mat_inf/mce.sublime-project"
+				"~/uni/optatives/high-perf-computing/high-performance.sublime-project"
 			]
 		],
 		"width": 380.0
@@ -958,7 +888,7 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 167.0,
+	"side_bar_width": 277.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{

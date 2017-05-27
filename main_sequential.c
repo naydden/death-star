@@ -30,8 +30,8 @@ int is_crash(xyz_t *sat_pos, xyz_t *deb_pos, int d) {
 	double distance;
 	distance = sqrt((sat_pos->x - deb_pos->x)*(sat_pos->x - deb_pos->x) + (sat_pos->y - deb_pos->y)*(sat_pos->y - deb_pos->y) + (sat_pos->z - deb_pos->z)*(sat_pos->z - deb_pos->z));
 
-	printf("Distance: %f\n", distance);
-	printf("Security: %d\n", d);
+	// printf("Distance: %f\n", distance);
+	// printf("Security: %d\n", d);
 	if ( distance <= d) {
 		return 1;
 	}
@@ -188,7 +188,6 @@ int main(int argc, char **argv)
 
 				imode = init_sgdp4(&orb);
 				// check_sgdp4(&imode);
-				printf("LALA\n");
 				if (xyz_position(jd, &sat_pos) == 1 ) exit(1);
 
 				/*********** DEBRIS **************************************/
@@ -217,21 +216,21 @@ int main(int argc, char **argv)
 					if (xyz_position(jd, &deb_pos) == 1) continue;
 
 					if (is_crash(&sat_pos,&deb_pos, diameter*security_ratio) == 1) {
-						printf("The orbit is unsafe!\n");
+						printf("Your satellite is not safe!\n");
 						printf("Crashed with %s\n", deb_object[deb].name);
 						printf("Crashed time %lf\n",tsince);
 						gettimeofday(&tv1, NULL);
 						elapsed = (tv1.tv_sec-tv.tv_sec)*1000000 + tv1.tv_usec-tv.tv_usec;
-						printf("Elapsed time: %ld ms\n", elapsed);
+						printf("Elapsed time: %f s\n", (double)elapsed/1000000);
 						exit(0);
 					}
 
 				}
 			}
 		}
-	printf("The orbit is safe! No crash has been detected!\n");
+	printf("No crash has been detected. Your satellite is safe! Congratulations!!\n");
 	gettimeofday(&tv1, NULL);
 	elapsed = (tv1.tv_sec-tv.tv_sec)*1000000 + tv1.tv_usec-tv.tv_usec;
-	printf("Elapsed time: %ld ms\n", elapsed/1000);
+	printf("Elapsed time: %f s\n", (double)elapsed/1000000);
 	exit(0);
 }

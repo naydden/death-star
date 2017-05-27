@@ -78,7 +78,7 @@ double bm, bx;
 		search_satno = atol(st1+2);
 		}
 
-	printf("# Looking for sat %05ld\n", search_satno);
+	// printf("# Looking for sat %05ld\n", search_satno);
 	sprintf(search, "1 %05ld", search_satno);
 
     do {

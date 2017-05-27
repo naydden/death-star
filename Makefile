@@ -20,10 +20,10 @@ SRCS=${LIBDIR}/aries.c ${LIBDIR}/deep.c ${LIBDIR}/ferror.c ${LIBDIR}/satutl.c ${
 OBJS=${SRCS:.c=.o}
 LIB=-lm $(XLIBS)
 
-all: main main-seq Armaggedon
+all: main-par main-seq Armaggedon
 
-main: $(OBJS) main.c
-	$(CC) $(CFLAGS) $(DEPFLAGS) -o $@ $(OBJS) main.c $(LIB) -lm
+main-par: $(OBJS) main_parallel.c
+	$(CC) $(CFLAGS) $(DEPFLAGS) -o $@ $(OBJS) main_parallel.c $(LIB) -lm
 
 main-seq: $(OBJS) main_sequential.c
 	$(CC) $(CFLAGS) $(DEPFLAGS) -o $@ $(OBJS) main_sequential.c $(LIB) -lm

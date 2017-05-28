@@ -58,25 +58,32 @@ int main(int argc, char **argv){
 	KEP *object;
 	object=read_sat(a1-1, a2);
 
-	int collision=0;
-	int prevColl=0;
-	int CollisionTime=1000;
-	int CollisionTimeG=1000;
 	KEP collider;
 
-	int TimeInit=0;
-	int TimeEnd=1000;
-	int TimeStep=1;
-	int TimeComm=5;
+	int year=2017;
+	int month=5;
+	int day=29;
+	int hour=18;
+	int minute=30;
+	double second=0;
+	double TimeInit=Cal2JD2K ( year, month, day, hour, minute, second );
+	double TimeEnd=TimeInit+100;
+	double TimeStep=0.01;
+	double TimeComm=1000*TimeStep;
+
+	int collision=0;
+	int prevColl=0;
+	double CollisionTime=1000*TimeEnd;
+	double CollisionTimeG=CollisionTime;
 
 	double rs_ijk[3];
 	double ro_ijk[3];
 	double distance;
-	double SecDistance=10000;
+	double SecDistance=1000;
 
-	for(int Time=TimeInit+1; Time<=TimeEnd; Time=Time+TimeStep){
+	for(double Time=TimeInit; Time<=TimeEnd; Time=Time+TimeStep){
 		if(quisoc()==0){
-			printf("Time: %d \n", Time);
+			printf("Time: %f \n", Time-TimeInit);
 		}
 		Propagate_KEP2ICF ( rs_ijk, satellite[0].sma, satellite[0].ecc, satellite[0].inc, satellite[0].argp, satellite[0].raan, satellite[0].M, Time-TimeInit, E_MU );
 		for(int k=a1; k<=a2; k++){
@@ -93,11 +100,12 @@ int main(int argc, char **argv){
 			}
 		}
 		
-		if(Time%TimeComm==0){
+		if(fmod(Time-TimeInit,TimeComm)==0){
+			printf("Hello");
 			r=MPI_Barrier(MPI_COMM_WORLD);
 			MPI_Allreduce(&collision, &collision, 1, MPI_INT, MPI_MAX, MPI_COMM_WORLD);
 			if(collision==1){
-				MPI_Allreduce(&CollisionTime, &CollisionTimeG, 1, MPI_INT, MPI_MIN, MPI_COMM_WORLD);
+				MPI_Allreduce(&CollisionTime, &CollisionTimeG, 1, MPI_DOUBLE, MPI_MIN, MPI_COMM_WORLD);
 				break;
 			}
 		}
@@ -105,7 +113,7 @@ int main(int argc, char **argv){
 	r=MPI_Barrier(MPI_COMM_WORLD);
 	if(collision==1){
 		if(CollisionTime==CollisionTimeG){
-			printf("Collider: %s Time of collision: %d \n", collider.name, CollisionTimeG);
+			printf("Collider: %s Time of collision: %f \n", collider.name, CollisionTimeG);
 		}
 	}
 	else{

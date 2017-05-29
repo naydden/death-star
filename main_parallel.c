@@ -269,7 +269,7 @@ int main(int argc, char **argv)
 						checkr(MPI_Allreduce(&CollisionTime, &CollisionTimeG, 1, MPI_INT, MPI_MIN, MPI_COMM_WORLD), "Collision time barrier");
 
 						if(CollisionTime==CollisionTimeG){
-							printf("Your satellite is not safe!\n");
+							printf("Your satellite is not safe!");
 							printf("Collider: %s Time of collision: %d \n", collider, CollisionTimeG);
 						}
 

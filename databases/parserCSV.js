@@ -11,18 +11,12 @@ fs.readFile('./space-track-db.csv', (err, data) => {
 		json = _.filter(output,(obj) => {
 			return obj.INCLINATION != '';
 		})
-		// entre 0 i 360
-		let RAAN = Math.random()*360;
-		// entre 0 i 360
-		let ARGP = Math.random()*360;
-		// entre 0 i 360
-		let M = Math.random()*360;
 		_.forEach(json, o => {
 			let randomElements = {
-				RAAN: RAAN,
+				RAAN: Math.random()*360,
 				epoch: 6205,
-				ARGP: ARGP,
-				M: M,
+				ARGP: Math.random()*360,
+				M: Math.random()*360,
 				e: (parseInt(o.APOGEE)-parseInt(o.PERIGEE))/(parseInt(o.APOGEE)+parseInt(o.PERIGEE)),
 				b: (parseInt(o.APOGEE) + parseInt(o.PERIGEE))/2
 			}

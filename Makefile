@@ -29,7 +29,7 @@ main-seq: $(OBJS) main_sequential.c
 	$(CC) $(CFLAGS) $(DEPFLAGS) -o $@ $(OBJS) main_sequential.c $(LIB) -lm
 
 Armaggedon: Armaggedon.c
-	mpicc ./lib/ReadDB.c ./lib/Astrodynamics.c Armaggedon.c -o $@ -lm
+	$(CC) ./lib/ReadDB.c ./lib/Astrodynamics.c Armaggedon.c -o $@ -lm
 
 compvec: ${LIBDIR}/comp.c
 	$(CC) $(CFLAGS) $(DEPFLAGS) -o $@ sgp_lib/comp.c $(LIB)

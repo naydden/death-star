@@ -50,10 +50,9 @@ for i in range(1,np+1):
 		command_line = "mpirun -np "+str(i)+" ./main-par -t 'databases/ISS.txt' -d 100 -f 1 -e "+str(simulation_time)+" -i "+str(delta_time)+" 2> /dev/null";
 	print command_line
 	args = shlex.split(command_line);
-
 	p = subprocess.Popen(args, stdout=subprocess.PIPE, stderr=None)
 	result = p.communicate()[0].split("\n")
-	result = float(filter(str.isdigit, result[1]))/1000000;
+	result = float(filter(str.isdigit, result[len(result)-2]))/1000000;
 	x_pr.append(i)
 	y_t.append(result)
 	print i
@@ -65,7 +64,7 @@ fig = plt.figure()
 # plt.plot(x_par, y_par,'b-o', label='Parallel')
 plt.plot(x_pr,y_t)
 plt.legend( loc='upper left', numpoints = 1 )
-plt.xlabel('Simulated Time[s]', fontsize=18)
+plt.xlabel('Number of processors', fontsize=18)
 plt.ylabel('Elapsed Time [s]', fontsize=16)
 plt.show()
 fig.savefig('speed_vs_process.jpg')

@@ -72,9 +72,9 @@ int main(int argc, char **argv){
 	int minute=30;
 	double second=0;
 	double TimeInit=Cal2JD2K ( year, month, day, hour, minute, second )*86400.0;
-	double TimeEnd=TimeInit+86400;
-	double TimeStep=60;
-	double TimeComm=60*TimeStep;
+	double TimeEnd=TimeInit+100000;
+	double TimeStep=100;
+	double TimeComm=100*TimeStep;
 
 	int collision=0;
 	int prevColl=0;
@@ -93,9 +93,9 @@ int main(int argc, char **argv){
 			progress=100*(Time-TimeInit)/(TimeEnd-TimeInit);
 			if(fabs(fmod(progress,1.0)<=1E-6)) printf("Progress: %d %% \n", (int)progress);
 		}
-		Propagate_KEP2ICF ( rs_ijk, satellite[0].sma, satellite[0].ecc, satellite[0].inc, satellite[0].argp, satellite[0].raan, satellite[0].M, satellite[0].epoch-Time, E_MU );
+		Propagate_KEP2ICF ( rs_ijk, satellite[0].sma, satellite[0].ecc, satellite[0].inc, satellite[0].argp, satellite[0].raan, satellite[0].M, 86400*satellite[0].epoch-Time, E_MU );
 		for(int k=a1; k<=a2; k++){
-			Propagate_KEP2ICF ( ro_ijk, object[k-a1].sma, object[k-a1].ecc, object[k-a1].inc, object[k-a1].argp, object[k-a1].raan, object[k-a1].M, object[k-a1].epoch-Time, E_MU );
+			Propagate_KEP2ICF ( ro_ijk, object[k-a1].sma, object[k-a1].ecc, object[k-a1].inc, object[k-a1].argp, object[k-a1].raan, object[k-a1].M, 86400*object[k-a1].epoch-Time, E_MU );
 			distance=(rs_ijk[0]-ro_ijk[0])*(rs_ijk[0]-ro_ijk[0])+(rs_ijk[1]-ro_ijk[1])*(rs_ijk[1]-ro_ijk[1])+(rs_ijk[2]-ro_ijk[2])*(rs_ijk[2]-ro_ijk[2]);
 			distance=sqrt(distance);
 			if(distance<SecDistance){

@@ -22,11 +22,11 @@ LIB=-lm $(XLIBS)
 
 all: main-par main-seq Armaggedon
 
-main-par: $(OBJS) main_parallel.c
-	$(CC) $(CFLAGS) $(DEPFLAGS) -o $@ $(OBJS) main_parallel.c $(LIB) -lm
+main-par: $(OBJS) main-par.c
+	$(CC) $(CFLAGS) $(DEPFLAGS) -o $@ $(OBJS) main-par.c $(LIB) -lm
 
-main-seq: $(OBJS) main_sequential.c
-	$(CC) $(CFLAGS) $(DEPFLAGS) -o $@ $(OBJS) main_sequential.c $(LIB) -lm
+main-seq: $(OBJS) main-seq.c
+	$(CC) $(CFLAGS) $(DEPFLAGS) -o $@ $(OBJS) main-seq.c $(LIB) -lm
 
 Armaggedon: Armaggedon.c
 	$(CC) ./lib/ReadDB.c ./lib/Astrodynamics.c Armaggedon.c -o $@ -lm

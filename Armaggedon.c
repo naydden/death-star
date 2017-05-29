@@ -37,7 +37,7 @@ int main(int argc, char **argv){
 	int a2;
 
 	//Find the number of asteroids somehow. Meanwhile, use this:
-	N=1000;
+	N=10000;
 
 	a1=quisoc()*N/quants()+1;
 	a2=(quisoc()+1)*N/quants();
@@ -58,29 +58,39 @@ int main(int argc, char **argv){
 	KEP *object;
 	object=read_sat(a1-1, a2);
 
-	int collision=0;
-	int prevColl=0;
-	int CollisionTime=1000;
-	int CollisionTimeG=1000;
 	KEP collider;
 
-	int TimeInit=0;
-	int TimeEnd=1000;
-	int TimeStep=1;
-	int TimeComm=5;
+	int year=2017;
+	int month=5;
+	int day=29;
+	int hour=18;
+	int minute=30;
+	double second=0;
+	double TimeInit=Cal2JD2K ( year, month, day, hour, minute, second );
+	double TimeEnd=TimeInit+200000;
+	double TimeStep=100;
+	double TimeComm=10*TimeStep;
+
+	int collision=0;
+	int prevColl=0;
+	double CollisionTime=1000*TimeEnd;
+	double CollisionTimeG=CollisionTime;
 
 	double rs_ijk[3];
 	double ro_ijk[3];
 	double distance;
-	double SecDistance=10000;
+	double SecDistance=10;
 
-	for(int Time=TimeInit+1; Time<=TimeEnd; Time=Time+TimeStep){
+	double progress;
+
+	for(double Time=TimeInit; Time<=TimeEnd; Time=Time+TimeStep){
 		if(quisoc()==0){
-			printf("Time: %d \n", Time);
+			progress=100*(Time-TimeInit)/(TimeEnd-TimeInit);
+			if(fabs(fmod(progress,1.0)<=1E-6)) printf("Progress: %d %% \n", (int)progress);
 		}
-		Propagate_KEP2ICF ( rs_ijk, satellite[0].sma, satellite[0].ecc, satellite[0].inc, satellite[0].argp, satellite[0].raan, satellite[0].M, Time-TimeInit, E_MU );
+		Propagate_KEP2ICF ( rs_ijk, satellite[0].sma, satellite[0].ecc, satellite[0].inc, satellite[0].argp, satellite[0].raan, satellite[0].M, satellite[0].epoch-Time, E_MU );
 		for(int k=a1; k<=a2; k++){
-			Propagate_KEP2ICF ( ro_ijk, object[k-a1].sma, object[k-a1].ecc, object[k-a1].inc, object[k-a1].argp, object[k-a1].raan, object[k-a1].M, Time-TimeInit, E_MU );
+			Propagate_KEP2ICF ( ro_ijk, object[k-a1].sma, object[k-a1].ecc, object[k-a1].inc, object[k-a1].argp, object[k-a1].raan, object[k-a1].M, object[k-a1].epoch-Time, E_MU );
 			distance=(rs_ijk[0]-ro_ijk[0])*(rs_ijk[0]-ro_ijk[0])+(rs_ijk[1]-ro_ijk[1])*(rs_ijk[1]-ro_ijk[1])+(rs_ijk[2]-ro_ijk[2])*(rs_ijk[2]-ro_ijk[2]);
 			distance=sqrt(distance);
 			if(distance<SecDistance){
@@ -93,19 +103,24 @@ int main(int argc, char **argv){
 			}
 		}
 		
-		if(Time%TimeComm==0){
+		if(fabs(fmod(Time-TimeInit,TimeComm)<=1E-6)){
 			r=MPI_Barrier(MPI_COMM_WORLD);
 			MPI_Allreduce(&collision, &collision, 1, MPI_INT, MPI_MAX, MPI_COMM_WORLD);
 			if(collision==1){
-				MPI_Allreduce(&CollisionTime, &CollisionTimeG, 1, MPI_INT, MPI_MIN, MPI_COMM_WORLD);
+				MPI_Allreduce(&CollisionTime, &CollisionTimeG, 1, MPI_DOUBLE, MPI_MIN, MPI_COMM_WORLD);
 				break;
 			}
 		}
 	}
 	r=MPI_Barrier(MPI_COMM_WORLD);
+	MPI_Allreduce(&collision, &collision, 1, MPI_INT, MPI_MAX, MPI_COMM_WORLD);
+	if(collision==1){
+		MPI_Allreduce(&CollisionTime, &CollisionTimeG, 1, MPI_DOUBLE, MPI_MIN, MPI_COMM_WORLD);
+	}
+
 	if(collision==1){
 		if(CollisionTime==CollisionTimeG){
-			printf("Collider: %s Time of collision: %d \n", collider.name, CollisionTimeG);
+			printf("Collider: %s Time of collision: %f \n", collider.name, CollisionTimeG);
 		}
 	}
 	else{

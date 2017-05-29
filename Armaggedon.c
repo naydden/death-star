@@ -84,7 +84,7 @@ int main(int argc, char **argv){
 	double rs_ijk[3];
 	double ro_ijk[3];
 	double distance;
-	double SecDistance=30;
+	double SecDistance=20;
 
 	double progress;
 
@@ -110,7 +110,6 @@ int main(int argc, char **argv){
 		
 		if(fabs(fmod(Time-TimeInit,TimeComm)<=1E-6)){
 			if(quisoc()==0) printf("Communication \n");
-			r=MPI_Barrier(MPI_COMM_WORLD);
 			MPI_Allreduce(&collision, &collision, 1, MPI_INT, MPI_MAX, MPI_COMM_WORLD);
 			if(collision==1){
 				MPI_Allreduce(&CollisionTime, &CollisionTimeG, 1, MPI_DOUBLE, MPI_MIN, MPI_COMM_WORLD);
@@ -118,32 +117,27 @@ int main(int argc, char **argv){
 			}
 		}
 	}
-	r=MPI_Barrier(MPI_COMM_WORLD);
 	MPI_Allreduce(&collision, &collision, 1, MPI_INT, MPI_MAX, MPI_COMM_WORLD);
 	if(collision==1){
 		MPI_Allreduce(&CollisionTime, &CollisionTimeG, 1, MPI_DOUBLE, MPI_MIN, MPI_COMM_WORLD);
 	}
 
 	Tfinish=MPI_Wtime();
+	MPI_Allreduce(&Tstart, &Tstart, 1, MPI_DOUBLE, MPI_MIN, MPI_COMM_WORLD);
+	MPI_Allreduce(&Tfinish, &Tfinish, 1, MPI_DOUBLE, MPI_MAX, MPI_COMM_WORLD);
 	Tprogramm=Tfinish-Tstart;
 
-	int *yearC;
-	int *monthC;
-	int *dayC;
-	int *hourC;
-	int *minuteC;
-	double *secondC;
-	yearC=(int *)malloc(sizeof(int));
-	monthC=(int *)malloc(sizeof(int));
-	dayC=(int *)malloc(sizeof(int));
-	hourC=(int *)malloc(sizeof(int));
-	minuteC=(int *)malloc(sizeof(int));
-	secondC=(double *)malloc(sizeof(double));
-	JD2K2Cal ( yearC, monthC, dayC, hourC, minuteC, secondC, CollisionTimeG/86400.0 );
+	int yearC;
+	int monthC;
+	int dayC;
+	int hourC;
+	int minuteC;
+	double secondC;
+	JD2K2Cal ( &yearC, &monthC, &dayC, &hourC, &minuteC, &secondC, CollisionTimeG/86400.0 );
 
 	if(collision==1){
 		if(CollisionTime==CollisionTimeG){
-			printf("Collider: %s \nYear: %d Month: %d Day: %d Hour: %d Minute: %d Seconds: %f  \n", collider.name, *yearC, *monthC, *dayC, *hourC, *minuteC, *secondC);
+			printf("Collider: %s \nYear: %d Month: %d Day: %d Hour: %d Minute: %d Seconds: %f  \n", collider.name, yearC, monthC, dayC, hourC, minuteC, secondC);
 			printf("Program time %f \n", Tprogramm);
 		}
 	}
@@ -153,6 +147,9 @@ int main(int argc, char **argv){
 			printf("Program time %f \n", Tprogramm);
 		}
 	}
+
+	free(satellite);
+	free(object);
 
 	MPI_Finalize();
 

@@ -66,10 +66,10 @@ int main(int argc, char **argv){
 	KEP collider;
 
 	int year=2017;
-	int month=1;
-	int day=1;
-	int hour=0;
-	int minute=0;
+	int month=5;
+	int day=29;
+	int hour=18;
+	int minute=30;
 	double second=0;
 	double TimeInit=Cal2JD2K ( year, month, day, hour, minute, second )*86400.0;
 	double TimeEnd=TimeInit+86400;
@@ -84,7 +84,7 @@ int main(int argc, char **argv){
 	double rs_ijk[3];
 	double ro_ijk[3];
 	double distance;
-	double SecDistance=20;
+	double SecDistance=30;
 
 	double progress;
 
@@ -143,7 +143,7 @@ int main(int argc, char **argv){
 
 	if(collision==1){
 		if(CollisionTime==CollisionTimeG){
-			printf("Collider: %s \n Year: %d Month: %d Day: %d Hour: %d Minute: %d Seconds: %f  \n", collider.name, *yearC, *monthC, *dayC, *hourC, *minuteC, *secondC);
+			printf("Collider: %s \nYear: %d Month: %d Day: %d Hour: %d Minute: %d Seconds: %f  \n", collider.name, *yearC, *monthC, *dayC, *hourC, *minuteC, *secondC);
 			printf("Program time %f \n", Tprogramm);
 		}
 	}

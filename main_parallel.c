@@ -105,7 +105,7 @@ int main(int argc, char **argv)
 	int n = 17538;
 	int a1=quisoc()*n/quants()+1;
 	int a2=(quisoc()+1)*n/quants();
-	int time_comm = 10; //s
+	int time_comm = 3600; //s
 	int collision = 0;
 	int CollisionTime;
 	int CollisionTimeG;
@@ -119,8 +119,8 @@ int main(int argc, char **argv)
 	int sim_time_status = -1;
 	int diameter;
 	int security_ratio;
-	double sim_time;
-	double delta = 1.0;
+	int sim_time;
+	int delta = 1;
 
 	// time related
 	int ts = 0;
@@ -132,7 +132,8 @@ int main(int argc, char **argv)
 
 	long ii,imax,iend=-1;
 	int imode;
-	double jd, tsince;
+	double jd;
+	int tsince;
 
 	orbit_t orb;
 	xyz_t sat_pos, deb_pos;
@@ -159,6 +160,7 @@ int main(int argc, char **argv)
 				tle_satus = 1;
 				break;
 			case 'd':
+			// in km
 				diameter = atoi(optarg);
 				diameter_satuts = 1;
 				break;
@@ -167,10 +169,12 @@ int main(int argc, char **argv)
 				zone_status = 1;
 				break;
 			case 'e':
+			//  iteger!
 				sim_time= atoi(optarg);
 				sim_time_status = 1;
 				break;
 			case 'i':
+			// integer!
 				delta = atof(optarg);
 				break;
 			case ':':
@@ -203,7 +207,7 @@ int main(int argc, char **argv)
 		imode = init_sgdp4(&orb);
 		// check_sgdp4(&imode);
 
-		for(ii=0; ii <= (int)sim_time/delta ; ii++)
+		for(ii=0; ii <= sim_time/delta ; ii++)
 			{
 				if(ii != iend) {
 					tsince=ts + ii*delta;
@@ -212,7 +216,7 @@ int main(int argc, char **argv)
 					tsince=ts + delta;
 				}
 
-				jd = SGDP4_jd0 + tsince / 1440.0;
+				jd = SGDP4_jd0 + tsince / (60*1440.0);
 
 				/*********** SATELLITE **************************************/
 				// init_sgdp4 passes all of the required orbital elements to
@@ -261,7 +265,7 @@ int main(int argc, char **argv)
 
 				}
 
-				if ((int)tsince%time_comm==0) {
+				if (tsince%time_comm==0) {
 					checkr(MPI_Barrier(MPI_COMM_WORLD), "Barrier1");
 					checkr(MPI_Allreduce(&collision, &collision, 1, MPI_INT, MPI_MAX, MPI_COMM_WORLD), "All reduce 1");
 					if(collision==1){
@@ -283,6 +287,11 @@ int main(int argc, char **argv)
 
 					MPI_Finalize();
 					exit(0);
+					}
+					else {
+						if (quisoc() ==  0){
+							printf("No collision detected at %d\n", tsince);
+						}
 					}
 				}
 			}

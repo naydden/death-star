@@ -29,7 +29,6 @@ int xyz_position(double jd, xyz_t *pos) {
 int is_crash(xyz_t *sat_pos, xyz_t *deb_pos, int d) {
 	double distance;
 	distance = sqrt((sat_pos->x - deb_pos->x)*(sat_pos->x - deb_pos->x) + (sat_pos->y - deb_pos->y)*(sat_pos->y - deb_pos->y) + (sat_pos->z - deb_pos->z)*(sat_pos->z - deb_pos->z));
-
 	// printf("Distance: %f\n", distance);
 	// printf("Security: %d\n", d);
 	if ( distance <= d) {
@@ -84,8 +83,8 @@ int main(int argc, char **argv)
 	int sim_time_status = -1;
 	int diameter;
 	int security_ratio;
-	double sim_time;
-	double delta = 1.0;
+	int sim_time;
+	int delta = 1;
 
 	// time related
 	int ts = 0;
@@ -99,7 +98,8 @@ int main(int argc, char **argv)
 
 	long ii,imax,iend=-1;
 	int imode;
-	double jd, tsince;
+	double jd;
+	int tsince;
 
 	orbit_t orb;
 	xyz_t sat_pos, deb_pos;
@@ -127,6 +127,7 @@ int main(int argc, char **argv)
 				tle_satus = 1;
 				break;
 			case 'd':
+			// in km
 				diameter = atoi(optarg);
 				diameter_satuts = 1;
 				break;
@@ -135,10 +136,12 @@ int main(int argc, char **argv)
 				zone_status = 1;
 				break;
 			case 'e':
+			//  iteger!
 				sim_time= atoi(optarg);
 				sim_time_status = 1;
 				break;
 			case 'i':
+			// integer!
 				delta = atof(optarg);
 				break;
 			case ':':
@@ -180,7 +183,7 @@ int main(int argc, char **argv)
 					tsince=ts + delta;
 				}
 
-				jd = SGDP4_jd0 + tsince / 1440.0;
+				jd = SGDP4_jd0 + tsince / (60*1440.0);
 
 				/*********** SATELLITE **************************************/
 				// init_sgdp4 passes all of the required orbital elements to
@@ -217,8 +220,8 @@ int main(int argc, char **argv)
 
 					if (is_crash(&sat_pos,&deb_pos, diameter*security_ratio) == 1) {
 						printf("Your satellite is not safe!\n");
-						printf("Crashed with %s\n", deb_object[deb].name);
-						printf("Crashed time %lf\n",tsince);
+						printf("Crashed with %s", deb_object[deb].name);
+						printf(" Crashed time %d\n",tsince);
 						gettimeofday(&tv1, NULL);
 						elapsed = (tv1.tv_sec-tv.tv_sec)*1000000 + tv1.tv_usec-tv.tv_usec;
 						printf("Elapsed time: %f s\n", (double)elapsed/1000000);

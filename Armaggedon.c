@@ -84,7 +84,7 @@ int main(int argc, char **argv){
 	double rs_ijk[3];
 	double ro_ijk[3];
 	double distance;
-	double SecDistance=10;
+	double SecDistance=20;
 
 	double progress;
 

@@ -57,7 +57,7 @@ int main(int argc, char **argv){
 	satellite.argp=2.9158675;
 	satellite.raan=3.3322712;
 	satellite.M=4.8949644;
-	satellite.epoch=6342.53;
+	satellite.epoch=6205;
 	
 
 	KEP *object;
@@ -66,13 +66,13 @@ int main(int argc, char **argv){
 	KEP collider;
 
 	int year=2017;
-	int month=5;
-	int day=29;
-	int hour=18;
-	int minute=30;
+	int month=1;
+	int day=2;
+	int hour=0;
+	int minute=0;
 	double second=0;
 	double TimeInit=Cal2JD2K ( year, month, day, hour, minute, second )*86400.0;
-	double TimeEnd=TimeInit+200000;
+	double TimeEnd=TimeInit+100000;
 	double TimeStep=100;
 	double TimeComm=100*TimeStep;
 
@@ -83,8 +83,18 @@ int main(int argc, char **argv){
 	double rs_ijk[3];
 	double ro_ijk[3];
 	double distance;
-	double SecDistance=20;
+	double SecDistance=10;
 	double distanceC;
+	int pos=0;
+
+	FILE *PositionS;
+	FILE *PositionO;
+	PositionS=fopen("plots/PositionS.txt", "w");
+	PositionO=fopen("plots/PositionO.txt", "w");
+
+	if(a1<=7636&&a2>=7636){
+		printf("%s %f %f %f %f %f %f %f\n", object[7637-a1].name, object[7637-a1].sma, object[7637-a1].ecc, object[7637-a1].inc, object[7637-a1].argp, object[7637-a1].raan, object[7637-a1].M, object[7637-a1].epoch);
+	}
 
 	double progress;
 
@@ -104,9 +114,16 @@ int main(int argc, char **argv){
 					CollisionTime=Time;
 					collider=object[k-a1];
 					distanceC=distance;
+					pos=k;
 				}
 			}
+			if(k==7637){
+				fprintf(PositionO, "%f,%f,%f,%f\n",Time-TimeInit,ro_ijk[0],ro_ijk[1],ro_ijk[2]);
+			}
+
 		}
+
+		fprintf(PositionS, "%f,%f,%f,%f\n",Time-TimeInit,rs_ijk[0],rs_ijk[1],rs_ijk[2]);
 		
 		if(fabs(fmod(Time-TimeInit,TimeComm)<=1E-6)){
 			if(quisoc()==0) printf("Communication \n");
@@ -137,8 +154,8 @@ int main(int argc, char **argv){
 
 	if(collision==1){
 		if(CollisionTime==CollisionTimeG){
-			printf("Collider: %s \n", collider.name);
-			printf("Distance: %f \n", distanceC);
+			printf("Collider: %s Position in Database: %d \n", collider.name, pos);
+			printf("Distance: %f Time: %f \n", distanceC, CollisionTimeG-TimeInit);
 			printf("Collision Time: %d/%d/%d %d:%d:%d \n", dayC, monthC, yearC, hourC, minuteC, (int)secondC);
 			printf("Program time %f \n", Tprogramm);
 		}
@@ -151,6 +168,8 @@ int main(int argc, char **argv){
 	}
 
 	free(object);
+	fclose(PositionS);
+	fclose(PositionO);
 
 	MPI_Finalize();
 

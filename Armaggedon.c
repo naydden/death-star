@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <assert.h>
 #include <math.h>
+#include <string.h>
 #include "./lib/ReadDB.h"
 #include "./lib/Astrodynamics.h"
 #include "mpi.h"
@@ -47,17 +48,16 @@ int main(int argc, char **argv){
 	a1=quisoc()*N/quants()+1;
 	a2=(quisoc()+1)*N/quants();
 
-	KEP *satellite;
-	satellite=read_sat(0, 1);
-	//satellite[0].name="ISS";
-	
-	satellite[0].sma=6775;
-	satellite[0].ecc=0.0005238;
-	satellite[0].inc=0.9012898;
-	satellite[0].argp=2.9158675;
-	satellite[0].raan=3.3322712;
-	satellite[0].M=4.8949644;
-	satellite[0].epoch=6342.53;
+	KEP satellite;
+	//satellite.name="ISS";
+	strncpy(satellite.name, "ISS", 32);
+	satellite.sma=6775;
+	satellite.ecc=0.0005238;
+	satellite.inc=0.9012898;
+	satellite.argp=2.9158675;
+	satellite.raan=3.3322712;
+	satellite.M=4.8949644;
+	satellite.epoch=6342.53;
 	
 
 	KEP *object;
@@ -72,7 +72,7 @@ int main(int argc, char **argv){
 	int minute=30;
 	double second=0;
 	double TimeInit=Cal2JD2K ( year, month, day, hour, minute, second )*86400.0;
-	double TimeEnd=TimeInit+100000;
+	double TimeEnd=TimeInit+200000;
 	double TimeStep=100;
 	double TimeComm=100*TimeStep;
 
@@ -84,6 +84,7 @@ int main(int argc, char **argv){
 	double ro_ijk[3];
 	double distance;
 	double SecDistance=20;
+	double distanceC;
 
 	double progress;
 
@@ -92,7 +93,7 @@ int main(int argc, char **argv){
 			progress=100*(Time-TimeInit)/(TimeEnd-TimeInit);
 			if(fabs(fmod(progress,1.0)<=1E-6)) printf("Progress: %d %% \n", (int)progress);
 		}
-		Propagate_KEP2ICF ( rs_ijk, satellite[0].sma, satellite[0].ecc, satellite[0].inc, satellite[0].argp, satellite[0].raan, satellite[0].M, Time-86400*satellite[0].epoch, E_MU );
+		Propagate_KEP2ICF ( rs_ijk, satellite.sma, satellite.ecc, satellite.inc, satellite.argp, satellite.raan, satellite.M, Time-86400*satellite.epoch, E_MU );
 		for(int k=a1; k<=a2; k++){
 			Propagate_KEP2ICF ( ro_ijk, object[k-a1].sma, object[k-a1].ecc, object[k-a1].inc, object[k-a1].argp, object[k-a1].raan, object[k-a1].M, Time-86400*object[k-a1].epoch, E_MU );
 			distance=(rs_ijk[0]-ro_ijk[0])*(rs_ijk[0]-ro_ijk[0])+(rs_ijk[1]-ro_ijk[1])*(rs_ijk[1]-ro_ijk[1])+(rs_ijk[2]-ro_ijk[2])*(rs_ijk[2]-ro_ijk[2]);
@@ -102,6 +103,7 @@ int main(int argc, char **argv){
 					collision=1;
 					CollisionTime=Time;
 					collider=object[k-a1];
+					distanceC=distance;
 				}
 			}
 		}
@@ -135,7 +137,9 @@ int main(int argc, char **argv){
 
 	if(collision==1){
 		if(CollisionTime==CollisionTimeG){
-			printf("Collider: %s \nYear: %d Month: %d Day: %d Hour: %d Minute: %d Seconds: %f  \n", collider.name, yearC, monthC, dayC, hourC, minuteC, secondC);
+			printf("Collider: %s \n", collider.name);
+			printf("Distance: %f \n", distanceC);
+			printf("Collision Time: %d/%d/%d %d:%d:%d \n", dayC, monthC, yearC, hourC, minuteC, (int)secondC);
 			printf("Program time %f \n", Tprogramm);
 		}
 	}
@@ -146,7 +150,6 @@ int main(int argc, char **argv){
 		}
 	}
 
-	free(satellite);
 	free(object);
 
 	MPI_Finalize();

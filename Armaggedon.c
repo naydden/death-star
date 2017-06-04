@@ -7,7 +7,7 @@
 #include "./lib/Astrodynamics.h"
 #include "mpi.h"
 
-void checkr(int r,char *txt) { 
+void checkr(int r,char *txt) {
   if (r!=MPI_SUCCESS) {
     fprintf(stderr,"Error: %s\n",txt);
     exit(-1);
@@ -58,7 +58,7 @@ int main(int argc, char **argv){
 	satellite.raan=3.3322712;
 	satellite.M=4.8949644;
 	satellite.epoch=6205;
-	
+
 
 	KEP *object;
 	object=read_sat(a1-1, a2);
@@ -71,10 +71,11 @@ int main(int argc, char **argv){
 	int hour=12;
 	int minute=0;
 	double second=0;
-	double TimeInit=Cal2JD2K ( year, month, day, hour, minute, second )*86400.0+5*3600;
+	double TimeInit=Cal2JD2K ( year, month, day, hour, minute, second )*86400.0+6*3600;
 	double TimeEnd=TimeInit+100000;
-	double TimeStep=50;
-	double TimeComm=100*TimeStep;
+	double TimeStep=10;
+	// double TimeComm=100*TimeStep;
+	double TimeComm=TimeStep;
 
 	int collision=0;
 	double CollisionTime=1000*TimeEnd;
@@ -86,12 +87,12 @@ int main(int argc, char **argv){
 	double SecDistance=10;
 	double distanceC;
 	int pos=0;
-	
+
 	FILE *PositionS;
 	FILE *PositionO;
 	PositionS=fopen("plots/PositionS.txt", "w");
 	PositionO=fopen("plots/PositionO.txt", "w");
-	
+
 
 	double progress;
 
@@ -114,17 +115,17 @@ int main(int argc, char **argv){
 					pos=k;
 				}
 			}
-			
+
 			if(k==7637){
 				fprintf(PositionO, "%f,%f,%f,%f\n",Time-TimeInit,ro_ijk[0],ro_ijk[1],ro_ijk[2]);
 			}
-			
+
 
 		}
-		
+
 		fprintf(PositionS, "%f,%f,%f,%f\n",Time-TimeInit,rs_ijk[0],rs_ijk[1],rs_ijk[2]);
-		
-		
+
+
 		if(fabs(fmod(Time-TimeInit,TimeComm)<=1E-6)){
 			if(quisoc()==0) printf("Communication \n");
 			MPI_Allreduce(&collision, &collision, 1, MPI_INT, MPI_MAX, MPI_COMM_WORLD);
@@ -168,10 +169,10 @@ int main(int argc, char **argv){
 	}
 
 	free(object);
-	
+
 	fclose(PositionS);
 	fclose(PositionO);
-	
+
 
 	MPI_Finalize();
 

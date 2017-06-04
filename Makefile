@@ -38,7 +38,7 @@ test: $(OBJS) ${LIBDIR}/test1.c
 	$(CC) $(CFLAGS) $(DEPFLAGS) -o $@ $(OBJS) sgp_lib/test1.c $(LIB) -lm
 
 clean:
-	$(RM) ${LIBDIR}/*.o *.o $(OBJS)
+	$(RM) ${LIBDIR}/*.o *.o $(OBJS) main-par main-seq Armaggedon test
 
 %.o: %.c
 	$(CC) $(CFLAGS) $(DEPFLAGS) -c $< -o $@

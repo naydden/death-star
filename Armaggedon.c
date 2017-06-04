@@ -67,14 +67,14 @@ int main(int argc, char **argv){
 
 	int year=2017;
 	int month=1;
-	int day=1;
-	int hour=0;
+	int day=2;
+	int hour=12;
 	int minute=0;
 	double second=0;
-	double TimeInit=Cal2JD2K ( year, month, day, hour, minute, second )*86400.0;
-	double TimeEnd=TimeInit+400000;
+	double TimeInit=Cal2JD2K ( year, month, day, hour, minute, second )*86400.0+5*3600;
+	double TimeEnd=TimeInit+100000;
 	double TimeStep=50;
-	double TimeComm=400*TimeStep;
+	double TimeComm=100*TimeStep;
 
 	int collision=0;
 	double CollisionTime=1000*TimeEnd;
